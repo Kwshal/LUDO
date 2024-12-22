@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUDO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="board">
+        <div class="homeSquare homeSquare1">
+            <div class="placeSquare placeSquare1"></div>
+            <div class="placeSquare placeSquare2"></div>
+            <div class="placeSquare placeSquare3"></div>
+            <div class="placeSquare placeSquare4"></div>
+        </div>
+        <div class="homeSquare homeSquare2">
+            <div class="placeSquare placeSquare1"></div>
+            <div class="placeSquare placeSquare2"></div>
+            <div class="placeSquare placeSquare3"></div>
+            <div class="placeSquare placeSquare4"></div>
+        </div>
+        <div class="homeSquare homeSquare3">
+            <div class="placeSquare placeSquare1"></div>
+            <div class="placeSquare placeSquare2"></div>
+            <div class="placeSquare placeSquare3"></div>
+            <div class="placeSquare placeSquare4"></div>
+        </div>
+        <div class="homeSquare homeSquare4">
+            <div class="placeSquare placeSquare1"></div>
+            <div class="placeSquare placeSquare2"></div>
+            <div class="placeSquare placeSquare3"></div>
+            <div class="placeSquare placeSquare4"></div>
+        </div>
+
+        <div class="finishSquare">
+            <!-- <img src="https://img.icons8.com/3d-plastilina/300/home--v1.png" alt="trophy" id="trophy"> -->
+            <img id="trophy" alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNTAgNTAiIHdpZHRoPSI0MDBweCIgaGVpZ2h0PSI0MDBweCIgYmFzZVByb2ZpbGU9ImJhc2ljIj48cG9seWdvbiBmaWxsPSIjNjZlMWZmIiBwb2ludHM9IjQ2LDIyLjExIDQ2LDI0LjQyIDQzLDI2LjE1IDQzLDM0LjI0IDI1LDQ0LjYzIDE0LDM4LjI4IDE0LDM1Ljk3IDEyLDM0LjgxIDEwLDM1Ljk3IDcsMzQuMjQgNywyMC4zOCA0LDIwLjk2IDQsMTguNjUgMjIsOC4yNiAzNCw1Ljk1Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIyNSwzMC43NzQgMjgsMzQuODE1IDQzLDI2LjE1NSA0MywzNC4yMzggMjUsNDQuNjMiLz48cG9seWdvbiBmaWxsPSIjZmY1NzU3IiBwb2ludHM9IjE2LDE4LjY0OSA0LDIwLjk1OSA0LDE4LjY0OSAxNiwxNi4zNCAyOCwzMi41MDYgMjgsMzQuODE1Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIzNCw4LjI1NyAyMiwxMC41NjYgMjIsOC4yNTcgMzQsNS45NDcgNDYsMjIuMTEzIDQ2LDI0LjQyMyIvPjxwb2x5Z29uIGZpbGw9IiNlNjRlNGUiIHBvaW50cz0iNCwxOC42NDkgMjIsOC4yNTcgMzQsNS45NDcgMTYsMTYuMzQiLz48cG9seWdvbiBmaWxsPSIjY2M0NTQ1IiBwb2ludHM9IjI4LDMyLjUwNiA0NiwyMi4xMTMgMzQsNS45NDcgMTYsMTYuMzQiLz48cG9seWdvbiBmaWxsPSIjYjMzZDNkIiBwb2ludHM9IjI4LDMyLjUwNiA0NiwyMi4xMTMgNDYsMjQuNDIzIDI4LDM0LjgxNSIvPjxwb2x5Z29uIGZpbGw9IiM0MjkyYTYiIHBvaW50cz0iMTcsMzQuMjM4IDIyLDM3LjEyNCAyMiwzMS4zNTEgMTcsMjguNDY0Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIxMCwzNS45NyAxMiwzNC44MTUgMTIsMjcuODg3IDEwLDI2LjczMiIvPjxwb2x5Z29uIGZpbGw9IiM0YWQ4ZmYiIHBvaW50cz0iMTksMzMuMDgzIDIyLDM0LjgxNSAyMiwzMS4zNTEgMTksMjkuNjE5Ii8+PHBvbHlnb24gZmlsbD0iIzUyYjFjYyIgcG9pbnRzPSIxNywzNC4yMzggMjIsMzcuMTI0IDIyLDM0LjgxNSAxOSwzMy4wODMiLz48cG9seWdvbiBmaWxsPSIjZmY1NzU3IiBwb2ludHM9IjEyLDM0LjgxNSAxNCwzNS45NyAxNCwyOS4wNDEgMTIsMjcuODg3Ii8+PC9zdmc+"/>
+        </div>
+
+        <div class="pathCont pathCont1">
+            <div class="moveSquare moveSquare1"></div>
+            <div class="moveSquare moveSquare2"></div>
+            <div class="moveSquare moveSquare3"></div>
+            <div class="moveSquare moveSquare4"></div>
+            <div class="moveSquare moveSquare5"></div>
+            <div class="moveSquare moveSquare6"></div>
+            <div class="moveSquare moveSquare7"></div>
+            <div class="moveSquare moveSquare8"></div>
+            <div class="moveSquare moveSquare9"></div>
+            <div class="moveSquare moveSquare10"></div>
+            <div class="moveSquare moveSquare11"></div>
+            <div class="moveSquare moveSquare12"></div>
+            <div class="moveSquare moveSquare13"></div>
+            <div class="moveSquare moveSquare14"></div>
+            <div class="moveSquare moveSquare15"></div>
+            <div class="moveSquare moveSquare16"></div>
+            <div class="moveSquare moveSquare17"></div>
+            <div class="moveSquare moveSquare18"></div>
+        </div>
+        <div class="pathCont pathCont2">
+            <div class="moveSquare moveSquare1"></div>
+            <div class="moveSquare moveSquare2"></div>
+            <div class="moveSquare moveSquare3"></div>
+            <div class="moveSquare moveSquare4"></div>
+            <div class="moveSquare moveSquare5"></div>
+            <div class="moveSquare moveSquare6"></div>
+            <div class="moveSquare moveSquare7"></div>
+            <div class="moveSquare moveSquare8"></div>
+            <div class="moveSquare moveSquare9"></div>
+            <div class="moveSquare moveSquare10"></div>
+            <div class="moveSquare moveSquare11"></div>
+            <div class="moveSquare moveSquare12"></div>
+            <div class="moveSquare moveSquare13"></div>
+            <div class="moveSquare moveSquare14"></div>
+            <div class="moveSquare moveSquare15"></div>
+            <div class="moveSquare moveSquare16"></div>
+            <div class="moveSquare moveSquare17"></div>
+            <div class="moveSquare moveSquare18"></div>
+        </div>
+        <div class="pathCont pathCont3">
+            <div class="moveSquare moveSquare1"></div>
+            <div class="moveSquare moveSquare2"></div>
+            <div class="moveSquare moveSquare3"></div>
+            <div class="moveSquare moveSquare4"></div>
+            <div class="moveSquare moveSquare5"></div>
+            <div class="moveSquare moveSquare6"></div>
+            <div class="moveSquare moveSquare7"></div>
+            <div class="moveSquare moveSquare8"></div>
+            <div class="moveSquare moveSquare9"></div>
+            <div class="moveSquare moveSquare10"></div>
+            <div class="moveSquare moveSquare11"></div>
+            <div class="moveSquare moveSquare12"></div>
+            <div class="moveSquare moveSquare13"></div>
+            <div class="moveSquare moveSquare14"></div>
+            <div class="moveSquare moveSquare15"></div>
+            <div class="moveSquare moveSquare16"></div>
+            <div class="moveSquare moveSquare17"></div>
+            <div class="moveSquare moveSquare18"></div>
+        </div>
+        <div class="pathCont pathCont4">
+            <div class="moveSquare moveSquare1"></div>
+            <div class="moveSquare moveSquare2"></div>
+            <div class="moveSquare moveSquare3"></div>
+            <div class="moveSquare moveSquare4"></div>
+            <div class="moveSquare moveSquare5"></div>
+            <div class="moveSquare moveSquare6"></div>
+            <div class="moveSquare moveSquare7"></div>
+            <div class="moveSquare moveSquare8"></div>
+            <div class="moveSquare moveSquare9"></div>
+            <div class="moveSquare moveSquare10"></div>
+            <div class="moveSquare moveSquare11"></div>
+            <div class="moveSquare moveSquare12"></div>
+            <div class="moveSquare moveSquare13"></div>
+            <div class="moveSquare moveSquare14"></div>
+            <div class="moveSquare moveSquare15"></div>
+            <div class="moveSquare moveSquare16"></div>
+            <div class="moveSquare moveSquare17"></div>
+            <div class="moveSquare moveSquare18"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

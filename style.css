@@ -1,0 +1,155 @@
+
+:root {
+  /* Modern Color Palette */
+  --ludo-home-1: #FF6F61; /* Coral Red */
+  --ludo-home-2: #6B5B95; /* Muted Purple */
+  --ludo-home-3: #88B04B; /* Olive Green */
+  --ludo-home-4: #F7CAC9; /* Blush Pink */
+
+  /* Darker Modern Color Palette */
+  --ludo-home-1-dark: #B54034; /* Dark Coral Red */
+  --ludo-home-2-dark: #4A4168; /* Deep Purple */
+  --ludo-home-3-dark: #5A722D; /* Dark Olive Green */
+  --ludo-home-4-dark: #C58A8D; /* Dusty Rose */
+
+  /* Supporting Colors */
+  --board-bg: #F3F3F3; /* Light Gray */
+  --border: 1px solid #D5D5D5; /* Soft Gray */
+  --text-color: #333333; /* Charcoal */
+  --highlight: #FFD700; /* Gold for winning or special spaces */
+  --place-squares: #00000080; /* Black with 50% opacity */
+
+  --board-bg-dark: #E0E0E0; /* Medium Gray */
+  --border-dark: 1px solid #A9A9A9; /* Gray Border */
+  --text-color-dark: #1A1A1A; /* Almost Black */
+  --highlight-dark: #B8860B; /* Dark Gold for winning or special spaces */
+
+  /* Dice Colors */
+  --dice-bg: #FFFFFF; /* White */
+  --dice-dot: #000000; /* Black */
+}
+
+
+.board {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template: 3fr 2fr 3fr / 3fr 2fr 3fr;
+    /* grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr; */
+    grid-template-areas:
+        "home1 path1 home2"
+        "path4 finish path2"
+        "home4 path3 home3"
+    ;
+    gap: 4px;
+    /* background-color: var(--board-bg); */
+    /* border: var(--border); */
+}
+
+
+.homeSquare {
+    height: 1fr;
+    box-sizing: border-box;
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    /* padding: 0 4px 4px 0; */
+    gap: 4px;
+    /* border: var(--border); */
+}
+
+.homeSquare1 {
+    grid-area: home1;
+    /* background-color: var(--ludo-home-1); */
+}
+.homeSquare1 .placeSquare {
+    background-color: var(--ludo-home-1);
+}
+
+.homeSquare2 {
+    grid-area: home2;
+    /* background-color: var(--ludo-home-3); */
+}
+.homeSquare2 .placeSquare {
+    background-color: var(--ludo-home-3);
+}
+
+.homeSquare3 {
+    grid-area: home3;
+    /* background-color: var(--ludo-home-2); */
+}
+.homeSquare3 .placeSquare {
+    background-color: var(--ludo-home-2);
+}
+
+.homeSquare4 {
+    grid-area: home4;
+    /* background-color: var(--ludo-home-4); */
+
+}
+.homeSquare4 .placeSquare {
+    background-color: var(--ludo-home-4);
+}
+
+.pathCont {
+    display: grid;
+    /* border: var(--border); */
+    /* background-color: var(--board-bg); */
+    box-sizing: border-box;
+    /* padding: 4px; */
+    gap: 3px;
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.pathCont1 {
+    grid-area: path1;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pathCont2 {
+    grid-area: path2;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.pathCont3 {
+    grid-area: path3;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.pathCont4 {
+    grid-area: path4;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.finishSquare {
+    grid-area: finish;
+    background-color: var(--highlight);
+    box-sizing: border-box;
+    /* margin: 2px; */
+    border-radius: 4px;
+}
+
+.placeSquare {
+    /* background-color: #00000080; */
+    border-radius: 4px;
+}
+
+.moveSquare {
+    background-color: rgb(227, 230, 208);
+    box-sizing: border-box;
+}
+
+#trophy {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* background-color: rgb(227, 230, 208); */
+}
+
+.moveSquare:hover {
+    /* box-shadow: 0 0 10px rgba(173, 173, 173, 0.3); */
+    background-color: var(--text-color);
+}
+
