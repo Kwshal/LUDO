@@ -1,0 +1,7 @@
+theme update:
+     -glass
+     -3d bubblyish
+
+feature update:
+     -restrictions (cant play illegal)
+     -automation (pieces move on their own)
