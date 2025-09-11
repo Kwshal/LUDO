@@ -7,7 +7,7 @@ const homeSquares = [...document.querySelectorAll(".homeSquare")];
 
 let dice = document.getElementById("dice");
 let diceNumber = null;
-let currentPlayer = "red";
+let currentPlayer = "blue";
 let tokenMovable = false;
 let diceRollable = true;
 let tokenHasMove = true; //! to be changed
@@ -25,7 +25,7 @@ dice.addEventListener("click", () => {
      }
 });
 function someOpenToken() {
-     let tokens = [...document.querySelectorAll(`.${currentPlayer}`)];
+     let tokens = [...document.querySelectorAll(`.token-${currentPlayer}`)];
      return tokens.some(token => {
           token.classList.contains("open") && hasAMove;
      });
@@ -38,7 +38,7 @@ board.addEventListener("click", e => {
      let startSquare = null;
      let moveSquare = null;
      let home = null;
-     if (e.target.classList.contains("token") && e.target.classList.contains(`${currentPlayer}`)) {
+     if (e.target.classList.contains("token") && e.target.classList.contains(`token-${currentPlayer}`)) {
           token = e.target;
           tokenIsOpen = token.classList.contains("open");
           if (tokenIsOpen) {
@@ -63,7 +63,7 @@ board.addEventListener("click", e => {
 });
 
 function updatePlayer(x) {
-     currentPlayer = ["red", "green", "pink", "purple"][x % 4];
+     currentPlayer = ["blue", "yellow", "pink", "green"][x % 4];
      console.log(currentPlayer, diceNumber);
 }
 

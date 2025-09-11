@@ -12,56 +12,59 @@
 <body>
     <div id="board">
         <div class="home-square">
-            <div class="place-square"><span class="token red"></span></div>
-            <div class="place-square"><span class="token red"></span></div>
-            <div class="place-square"><span class="token red"></span></div>
-            <div class="place-square"><span class="token red"></span></div>
+            <div class="place-square"><span class="token token-blue"></span></div>
+            <div class="place-square"><span class="token token-blue"></span></div>
+            <div class="place-square"><span class="token token-blue"></span></div>
+            <div class="place-square"><span class="token token-blue"></span></div>
         </div>
         <div class="home-square">
-            <div class="place-square"><span class="token green"></span></div>
-            <div class="place-square"><span class="token green"></span></div>
-            <div class="place-square"><span class="token green"></span></div>
-            <div class="place-square"><span class="token green"></span></div>
+            <div class="place-square"><span class="token token-yellow"></span></div>
+            <div class="place-square"><span class="token token-yellow"></span></div>
+            <div class="place-square"><span class="token token-yellow"></span></div>
+            <div class="place-square"><span class="token token-yellow"></span></div>
         </div>
         <div class="home-square">
-            <div class="place-square"><span class="token purple"></span></div>
-            <div class="place-square"><span class="token purple"></span></div>
-            <div class="place-square"><span class="token purple"></span></div>
-            <div class="place-square"><span class="token purple"></span></div>
+            <div class="place-square"><span class="token token-pink"></span></div>
+            <div class="place-square"><span class="token token-pink"></span></div>
+            <div class="place-square"><span class="token token-pink"></span></div>
+            <div class="place-square"><span class="token token-pink"></span></div>
         </div>
         <div class="home-square">
-            <div class="place-square"><span class="token pink""></span></div>
-            <div class="place-square"><span class="token pink""></span></div>
-            <div class="place-square"><span class="token pink""></span></div>
-            <div class="place-square"><span class="token pink""></span></div>
+            <div class="place-square"><span class="token token-green"></span></div>
+            <div class="place-square"><span class="token token-green"></span></div>
+            <div class="place-square"><span class="token token-green"></span></div>
+            <div class="place-square"><span class="token token-green"></span></div>
         </div>
 
         <div class="finish-square">
+
+            <span class="direct"></span>
+            <span class="direct"></span>
+            <span class="direct"></span>
+            <span class="direct"></span>
+
             <p id="current-player"></p>
             <button id="dice">6</button>
-
-            <img id="trophy" alt="svgImg"
-                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNTAgNTAiIHdpZHRoPSI0MDBweCIgaGVpZ2h0PSI0MDBweCIgYmFzZVByb2ZpbGU9ImJhc2ljIj48cG9seWdvbiBmaWxsPSIjNjZlMWZmIiBwb2ludHM9IjQ2LDIyLjExIDQ2LDI0LjQyIDQzLDI2LjE1IDQzLDM0LjI0IDI1LDQ0LjYzIDE0LDM4LjI4IDE0LDM1Ljk3IDEyLDM0LjgxIDEwLDM1Ljk3IDcsMzQuMjQgNywyMC4zOCA0LDIwLjk2IDQsMTguNjUgMjIsOC4yNiAzNCw1Ljk1Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIyNSwzMC43NzQgMjgsMzQuODE1IDQzLDI2LjE1NSA0MywzNC4yMzggMjUsNDQuNjMiLz48cG9seWdvbiBmaWxsPSIjZmY1NzU3IiBwb2ludHM9IjE2LDE4LjY0OSA0LDIwLjk1OSA0LDE4LjY0OSAxNiwxNi4zNCAyOCwzMi41MDYgMjgsMzQuODE1Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIzNCw4LjI1NyAyMiwxMC41NjYgMjIsOC4yNTcgMzQsNS45NDcgNDYsMjIuMTEzIDQ2LDI0LjQyMyIvPjxwb2x5Z29uIGZpbGw9IiNlNjRlNGUiIHBvaW50cz0iNCwxOC42NDkgMjIsOC4yNTcgMzQsNS45NDcgMTYsMTYuMzQiLz48cG9seWdvbiBmaWxsPSIjY2M0NTQ1IiBwb2ludHM9IjI4LDMyLjUwNiA0NiwyMi4xMTMgMzQsNS45NDcgMTYsMTYuMzQiLz48cG9seWdvbiBmaWxsPSIjYjMzZDNkIiBwb2ludHM9IjI4LDMyLjUwNiA0NiwyMi4xMTMgNDYsMjQuNDIzIDI4LDM0LjgxNSIvPjxwb2x5Z29uIGZpbGw9IiM0MjkyYTYiIHBvaW50cz0iMTcsMzQuMjM4IDIyLDM3LjEyNCAyMiwzMS4zNTEgMTcsMjguNDY0Ii8+PHBvbHlnb24gZmlsbD0iIzQyOTJhNiIgcG9pbnRzPSIxMCwzNS45NyAxMiwzNC44MTUgMTIsMjcuODg3IDEwLDI2LjczMiIvPjxwb2x5Z29uIGZpbGw9IiM0YWQ4ZmYiIHBvaW50cz0iMTksMzMuMDgzIDIyLDM0LjgxNSAyMiwzMS4zNTEgMTksMjkuNjE5Ii8+PHBvbHlnb24gZmlsbD0iIzUyYjFjYyIgcG9pbnRzPSIxNywzNC4yMzggMjIsMzcuMTI0IDIyLDM0LjgxNSAxOSwzMy4wODMiLz48cG9seWdvbiBmaWxsPSIjZmY1NzU3IiBwb2ludHM9IjEyLDM0LjgxNSAxNCwzNS45NyAxNCwyOS4wNDEgMTIsMjcuODg3Ii8+PC9zdmc+" />
         </div>
-    
+
         <div class="path-cont path-cont-1">
             <div class="move-square move-square-1" value="12">12</div>
             <div class="move-square move-square-2" value="13">13</div>
-            <div class="move-square move-square-3  stop green-stop" value="14">14</div>
+            <div class="move-square move-square-3  stop yellow-stop" value="14">14</div>
             <div class="move-square move-square-4" value="11">11</div>
-            <div class="home move-square move-square-5"></div>
+            <div class="final-square move-square move-square-5"><span class="final-arrow yellow">🡺</span></div>
             <div class="move-square move-square-6" value="15">15</div>
             <div class="move-square move-square-7" value="10">10</div>
-            <div class="home move-square move-square-8"></div>
+            <div class="final-square move-square move-square-8"><span class="final-arrow yellow">🡺</span></div>
             <div class="move-square move-square-9" value="16">16</div>
             <div class="move-square move-square-10 stop" value="9">9</div>
-            <div class="home move-square move-square-11"></div>
+            <div class="final-square move-square move-square-11"><span class="final-arrow yellow">🡺</span></div>
             <div class="move-square move-square-12" value="17">17</div>
             <div class="move-square move-square-13" value="8">8</div>
-            <div class="home move-square move-square-14"></div>
+            <div class="final-square move-square move-square-14"><span class="final-arrow yellow">🡺</span></div>
             <div class="move-square move-square-15" value="18">18</div>
             <div class="move-square move-square-16" value="7">7</div>
-            <div class="home move-square move-square-17"></div>
+            <div class="final-square move-square move-square-17"><span class="final-arrow yellow">🡺</span></div>
             <div class="move-square move-square-18" value="19">19</div>
         </div>
         <div class="path-cont path-cont-2">
@@ -71,52 +74,52 @@
             <div class="move-square move-square-4" value="23">23</div>
             <div class="move-square move-square-5" value="24">24</div>
             <div class="move-square move-square-6" value="25">25</div>
-            <div class="home move-square move-square-7"></div>
-            <div class="home move-square move-square-8"></div>
-            <div class="home move-square move-square-9"></div>
-            <div class="home move-square move-square-10"></div>
-            <div class="home move-square move-square-11"></div>
+            <div class="final-square move-square move-square-7"><span class="final-arrow green">🡺</span></div>
+            <div class="final-square move-square move-square-8"><span class="final-arrow green">🡺</span></div>
+            <div class="final-square move-square move-square-9"><span class="final-arrow green">🡺</span></div>
+            <div class="final-square move-square move-square-10"><span class="final-arrow green">🡺</span></div>
+            <div class="final-square move-square move-square-11"><span class="final-arrow green">🡺</span></div>
             <div class="move-square move-square-12" value="26">26</div>
             <div class="move-square move-square-13" value="32">32</div>
             <div class="move-square move-square-14" value="31">31</div>
             <div class="move-square move-square-15" value="30">30</div>
             <div class="move-square move-square-16" value="29">29</div>
             <div class="move-square move-square-17" value="28">28</div>
-            <div class="move-square move-square-18  stop pink-stop" value="27">27</div>
+            <div class="move-square move-square-18  stop green-stop" value="27">27</div>
         </div>
         <div class="path-cont path-cont-3">
             <div class="move-square move-square-1" value="45">45</div>
-            <div class="home move-square move-square-2"></div>
+            <div class="final-square move-square move-square-2"><span class="final-arrow pink">🡺</span></div>
             <div class="move-square move-square-3" value="33">33</div>
             <div class="move-square move-square-4" value="44">44</div>
-            <div class="home move-square move-square-5"></div>
+            <div class="final-square move-square move-square-5"><span class="final-arrow pink">🡺</span></div>
             <div class="move-square move-square-6" value="34">34</div>
             <div class="move-square move-square-7" value="43">43</div>
-            <div class="home move-square move-square-8"></div>
+            <div class="final-square move-square move-square-8"><span class="final-arrow pink">🡺</span></div>
             <div class="move-square move-square-9  stop" value="35">35</div>
             <div class="move-square move-square-10" value="42">42</div>
-            <div class="home move-square move-square-11"></div>
+            <div class="final-square move-square move-square-11"><span class="final-arrow pink">🡺</span></div>
             <div class="move-square move-square-12" value="36">36</div>
             <div class="move-square move-square-13" value="41">41</div>
-            <div class="home move-square move-square-14"></div>
+            <div class="final-square move-square move-square-14"><span class="final-arrow pink">🡺</span></div>
             <div class="move-square move-square-15" value="37">37</div>
-            <div class="move-square move-square-16 stop purple-stop" value="40">40</div>
+            <div class="move-square move-square-16 stop pink-stop" value="40">40</div>
             <div class="move-square move-square-17" value="39">39</div>
             <div class="move-square move-square-18" value="38">38</div>
         </div>
         <div class="path-cont path-cont-4">
-            <div class="move-square move-square-1 stop red-stop" value="1">1</div>
+            <div class="move-square move-square-1 stop blue-stop" value="1">1</div>
             <div class="move-square move-square-2" value="2">2</div>
             <div class="move-square move-square-3" value="3">3</div>
             <div class="move-square move-square-4" value="4">4</div>
             <div class="move-square move-square-5" value="5">5</div>
             <div class="move-square move-square-6" value="6">6</div>
             <div class="move-square move-square-7" value="0">0</div>
-            <div class="home move-square move-square-8"></div>
-            <div class="home move-square move-square-9"></div>
-            <div class="home move-square move-square-10"></div>
-            <div class="home move-square move-square-11"></div>
-            <div class="home move-square move-square-12"></div>
+            <div class="final-square move-square move-square-8"><span class="final-arrow blue">🡺</span></div>
+            <div class="final-square move-square move-square-9"><span class="final-arrow blue">🡺</span></div>
+            <div class="final-square move-square move-square-10"><span class="final-arrow blue">🡺</span></div>
+            <div class="final-square move-square move-square-11"><span class="final-arrow blue">🡺</span></div>
+            <div class="final-square move-square move-square-12"><span class="final-arrow blue">🡺</span></div>
             <div class="move-square move-square-13" value="51">51</div>
             <div class="move-square move-square-14" value="50">50</div>
             <div class="move-square move-square-15" value="49">49</div>

@@ -1,4 +1,4 @@
-function mobility(e, currentPlayerStop, diceNumber) {
+function moveToken(e, currentPlayerStop, diceNumber) {
      if ((!e.target.classList.contains("open")) && diceNumber === 6) {
           e.target.classList.add('open');
           currentPlayerStop.appendChild(e.target);
