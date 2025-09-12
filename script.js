@@ -1,9 +1,8 @@
 const board = document.getElementById("board");
 const tokens = [...document.querySelectorAll(".token")];
 const moveSquares = [...document.querySelectorAll(".moveSquare")];
-const homeSquares = [...document.querySelectorAll(".homeSquare")];
-// const stops = [...document.querySelectorAll(".stop")];
-// console.log(stops);
+// const homeSquares = [...document.querySelectorAll(".homeSquare")];
+const currentPlayerElement = document.getElementById("current-player");
 
 let dice = document.getElementById("dice");
 let diceNumber = null;
@@ -65,6 +64,11 @@ board.addEventListener("click", e => {
 function updatePlayer(x) {
      currentPlayer = ["blue", "yellow", "pink", "green"][x % 4];
      console.log(currentPlayer, diceNumber);
+     currentPlayerElement.innerText = currentPlayer.toUpperCase();
+     tokenMovable = true;
+     diceRollable = false;
+     tokenHasMove = true;
+     movePlayed = false;
 }
 
 // function openToken(token, homeSquare) {

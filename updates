@@ -5,3 +5,12 @@ theme update:
 feature update:
      -restrictions (cant play illegal)
      -automation (pieces move on their own)
+
+
+dark ludo rules: 
+ - reach end with 4 souls. it can be a single body with 4 souls.
+ - you can kill your own tokens to get extra lives (souls) but they become a ghost traiter?
+ - kill opp token to get their dice numbers until it opens again.
+ - killed teammate dies forever.
+ - dead player will a tombstone which will be just a subtle shadow under that square.
+

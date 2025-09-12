@@ -36,7 +36,8 @@
     padding: 0;
     box-sizing: border-box;
     user-select: none;
-    color: whitesmoke;
+    color: #000000;
+    background-color: #fff;
     font-family: 'Inter', 'Arial', sans-serif;
     font-weight: 100;
     line-height: 0;
