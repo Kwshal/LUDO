@@ -28,7 +28,7 @@
     --dice-dot: #cbd5e1;
     --text-dark: #222;
     --grey-dark: #444;
-    --grey-border: #888;
+    --grey-border: #000000;
     --grey-bg: #eeeeee;
 }
 
@@ -88,10 +88,6 @@ body {
     grid-area: home-1;
 }
 
-.home-square-1 .place-square {
-    background-color: var(--lightgrey);
-}
-
 .home-square-2 {
     grid-area: home-2;
 }
@@ -135,27 +131,27 @@ body {
 .path-cont-1 {
     grid-area: path-1;
     grid-template: repeat(6, 1fr) /repeat(3, 1fr);
-    padding: 0 5px;
+    /* padding: 0 5px; */
 }
 
 
 .path-cont-2 {
     grid-area: path-2;
     grid-template: repeat(3, 1fr) / repeat(6, 1fr);
-    padding: 5px 0;
+    /* padding: 5px 0; */
 }
 
 
 .path-cont-3 {
     grid-template: repeat(6, 1fr) /repeat(3, 1fr);
     grid-area: path-3;
-    padding: 0 5px;
+    /* padding: 0 5px; */
 }
 
 .path-cont-4 {
     grid-area: path-4;
     grid-template: repeat(3, 1fr)/repeat(6, 1fr);
-    padding: 5px 0;
+    /* padding: 5px 0; */
 }
 
 .finish-square {
@@ -215,18 +211,21 @@ body {
 
 .place-square {
     /* background-color: #00000080; */
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: .5px solid var(--grey-border);
-    border-bottom: 2px solid var(--grey-border);
+    /* border-bottom: 2px solid var(--grey-border); */
     z-index: 1999;
 }
 
 .move-square {
     box-shadow: 0 2px var(--shadow-light);
     border: .5px solid var(--grey-border);
-    border-bottom: 2px solid var(--grey-border);
+    /* border-bottom: 2px solid var(--grey-border); */
     border-radius: 3px;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .move-square,
@@ -266,7 +265,7 @@ body {
     z-index: 2;
     background: white;
     border: 1px solid var(--grey-border);
-    border-bottom: 2px solid var(--grey-border);
+    /* border-bottom: 2px solid var(--grey-border); */
 }
 
 .token-blue {
@@ -291,7 +290,7 @@ body {
 
 
 .stop {
-    border-color: #555555;
+    /* border-color: #555555; */
     background-color: var(--grey-bg);
 }
 
@@ -366,4 +365,5 @@ body {
     color: var(--token-green-soft);
     rotate: 180deg;
 }
+
 
