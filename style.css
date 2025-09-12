@@ -65,7 +65,7 @@ body {
         "home-1 path-1 home-2"
         "path-4 finish path-2"
         "home-4 path-3 home-3";
-    gap: 1%;
+    /* gap: 1%; */
     background: var(--board-bg);
     /* border-radius: 24px; */
     box-shadow: 0 4px 24px 0 var(--grey-bg);
@@ -80,7 +80,7 @@ body {
     background: var(--board-bg);
     /* border-radius: 12px; */
     grid-template: 1fr 1fr / 1fr 1fr;
-    gap: 8px;
+    /* gap: 8px; */
     /* box-shadow: var(--shadow-light); */
 }
 
@@ -128,7 +128,7 @@ body {
     /* background-color: var(--lightgrey); */
     box-sizing: border-box;
     /* padding: 4px; */
-    gap: 3px;
+    /* gap: 3px; */
     border-radius: 4px;
 }
 
