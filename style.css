@@ -160,7 +160,7 @@
     user-select: none;
     animation: blink 4s infinite;
     z-index: 1000;
-    border: 3px solid #fff;
+    border: 3px solid ;
 }
 
 @keyframes blinkk {
@@ -314,7 +314,7 @@
     background-color: transparent;
     box-shadow: 0px 2px 3px 0px #0000001e;
     font-size: 30px;
-    border: 1px solid #fff;
+    border: 1px solid ;
 }
 
 
@@ -328,7 +328,7 @@
     width: 100%;
     user-select: none;
     pointer-events: none;
-    color: #ffffffb4;
+    /* color: #ffffffb4; */
 }
 .final-arrow.blue {
     /* color: var(--token-blue-soft); */
