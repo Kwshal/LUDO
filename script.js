@@ -7,68 +7,75 @@ const currentPlayerElement = document.getElementById("current-player");
 let dice = document.getElementById("dice");
 let diceNumber = null;
 let currentPlayer = "blue";
-let tokenMovable = false;
+let tokenHasMove = true; //! add condition
 let diceRollable = true;
-let tokenHasMove = true; //! to be changed
-console.log("currentPlayer:", currentPlayer);
-let x = 0;
+let turnDone = false;
+let x = -1;
+let tokenIsColored = false;
+let tokensColored = {
+     blue: 0,
+     yellow: 0,
+     pink: 0,
+     green: 0
+};
 
 dice.addEventListener("click", () => {
      if (diceRollable) {
           diceNumber = Math.floor(Math.random() * 6 + 1);
           dice.innerText = diceNumber;
-          // tokenMovable = true;
-          x += +(diceNumber !== 6 && !someOpenToken());
-
-          updatePlayer();
+          diceRollable = false;
+          turnDone = false;
+          if (!someOpenToken()) {
+               if (diceNumber !== 6) {
+                    diceRollable = true;
+                    turnDone = true;
+               }
+               turnDone && updatePlayer(++x);
+               console.log(currentPlayer,"d:", diceNumber);
+          }
      }
 });
 function someOpenToken() {
      let tokens = [...document.querySelectorAll(`.token-${currentPlayer}`)];
      return tokens.some(token => {
-          token.classList.contains("open") && hasAMove;
+          return token.classList.contains("open") && tokenHasMove;
      });
 }
 
 board.addEventListener("click", e => {
-     let token = null;
-     let tokenIsOpen = null;
-     let currentSquare = null;
-     let startSquare = null;
-     let moveSquare = null;
-     let home = null;
      if (e.target.classList.contains("token") && e.target.classList.contains(`token-${currentPlayer}`)) {
-          token = e.target;
-          tokenIsOpen = token.classList.contains("open");
-          if (tokenIsOpen) {
-               currentSquare = +token.parentElement.getAttribute("value");
-               moveSquare = moveSquares[(currentSquare + diceNumber) % 52];
+          let token = e.target;
+          let tokenIsOpen = token.classList.contains("open");
+          let startSquare = document.querySelector(`.${currentPlayer}-stop`);
+          let currentSquare = +token.parentElement.dataset.sqNum;
+          let nextSquare = moveSquares[(currentSquare + diceNumber) % 52];
+          let home = document.querySelector(`.${currentPlayer}-home`);
+
+          if (diceNumber !== 6) {
+               if (tokenIsOpen && tokenHasMove) {
+                    nextSquare.appendChild(token);
+                    turnDone = true;
+                    diceRollable = true;
+               } else diceRollable = false;
           } else {
-               startSquare = document.querySelector(`.${currentPlayer}-stop`);
+               if (tokenIsOpen && tokenHasMove) {
+                    nextSquare.appendChild(token);
+                    diceRollable = true;
+               } else {
+                    startSquare.appendChild(token);
+                    token.classList.add("open");
+                    diceRollable = true;
+               }
+               turnDone = false;
           }
-     }
-
-     if (token && tokenMovable) {
-          if (!tokenIsOpen && diceNumber === 6) {
-               startSquare.appendChild(token);
-          } else updatePlayer();
-          tokenMovable = false;
-          diceRollable = true;
-
-          if (tokenIsOpen) {
-               moveSquare.appendChild(token);
-          }
+          turnDone && updatePlayer(++x); //? ++ (post increment operator) 
      }
 });
 
 function updatePlayer(x) {
-     currentPlayer = ["blue", "yellow", "pink", "green"][x % 4];
-     console.log(currentPlayer, diceNumber);
+     currentPlayer = ["blue", "yellow","green", "pink"][x % 4];
+     console.log(currentPlayer, "d", diceNumber);
      currentPlayerElement.innerText = currentPlayer.toUpperCase();
-     tokenMovable = true;
-     diceRollable = false;
-     tokenHasMove = true;
-     movePlayed = false;
 }
 
 // function openToken(token, homeSquare) {

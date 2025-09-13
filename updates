@@ -13,4 +13,6 @@ dark ludo rules:
  - kill opp token to get their dice numbers until it opens again.
  - killed teammate dies forever.
  - dead player will a tombstone which will be just a subtle shadow under that square.
+ - void theme: 
+   - arrow will point to the destiny for all tokens whem the dice is rolled.
 
