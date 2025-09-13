@@ -135,27 +135,27 @@ body {
 .path-cont-1 {
     grid-area: path-1;
     grid-template: repeat(6, 1fr) /repeat(3, 1fr);
-    padding: 0 5px;
+    padding: 0 1px;
 }
 
 
 .path-cont-2 {
     grid-area: path-2;
     grid-template: repeat(3, 1fr) / repeat(6, 1fr);
-    padding: 5px 0;
+    padding: 1px 0;
 }
 
 
 .path-cont-3 {
     grid-template: repeat(6, 1fr) /repeat(3, 1fr);
     grid-area: path-3;
-    padding: 0 5px;
+    padding: 0 1px;
 }
 
 .path-cont-4 {
     grid-area: path-4;
     grid-template: repeat(3, 1fr)/repeat(6, 1fr);
-    padding: 5px 0;
+    padding: 1px 0;
 }
 
 .finish-square {
@@ -269,6 +269,7 @@ body {
     background: white;
     border: 1px solid var(--grey-border);
     border-bottom: 2px solid var(--grey-border);
+    position: absolute;
 }
 
 .token-blue {
