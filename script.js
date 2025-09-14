@@ -1,6 +1,7 @@
 const board = document.getElementById("board");
-const tokens = [...document.querySelectorAll(".token")];
-const moveSquares = [...document.querySelectorAll(".moveSquare")];
+const tokens = Array.from(document.querySelectorAll(".token"));
+const moveSquares = Array.from(document.querySelectorAll(".move-square"));
+// console.log(moveSquares);
 // const homeSquares = [...document.querySelectorAll(".homeSquare")];
 const currentPlayerElement = document.getElementById("current-player");
 
@@ -21,17 +22,23 @@ let tokensColored = {
 
 dice.addEventListener("click", () => {
      if (diceRollable) {
+          !(diceNumber === "#" || diceNumber === 6) && updatePlayer(++x); //? ++ (post increment operator)
           diceNumber = Math.floor(Math.random() * 6 + 1);
           dice.innerText = diceNumber;
           diceRollable = false;
           turnDone = false;
           if (!someOpenToken()) {
                if (diceNumber !== 6) {
-                    diceRollable = true;
-                    turnDone = true;
+                    setTimeout(() => {
+                         turnDone = true;
+                         diceRollable = true;
+                         diceNumber = "#";
+                         dice.innerHTML = "#";
+                         updatePlayer(++x);
+                    }, 600);
                }
-               turnDone && updatePlayer(++x);
-               console.log(currentPlayer,"d:", diceNumber);
+               // turnDone && updatePlayer(++x);
+               // console.log(currentPlayer,"d:", diceNumber);
           }
      }
 });
@@ -48,7 +55,8 @@ board.addEventListener("click", e => {
           let tokenIsOpen = token.classList.contains("open");
           let startSquare = document.querySelector(`.${currentPlayer}-stop`);
           let currentSquare = +token.parentElement.dataset.sqNum;
-          let nextSquare = moveSquares[(currentSquare + diceNumber) % 52];
+          let idx = moveSquares.findIndex(sq => +sq.dataset.sqNum === (currentSquare + diceNumber) % 52);
+          let nextSquare = moveSquares[idx];
           let home = document.querySelector(`.${currentPlayer}-home`);
 
           if (diceNumber !== 6) {
@@ -56,6 +64,8 @@ board.addEventListener("click", e => {
                     nextSquare.appendChild(token);
                     turnDone = true;
                     diceRollable = true;
+                    diceNumber = "#";
+                    dice.innerHTML = "#"
                } else diceRollable = false;
           } else {
                if (tokenIsOpen && tokenHasMove) {
@@ -67,14 +77,16 @@ board.addEventListener("click", e => {
                     diceRollable = true;
                }
                turnDone = false;
+               diceNumber = "#";
+               dice.innerHTML = "#"
           }
-          turnDone && updatePlayer(++x); //? ++ (post increment operator) 
+          turnDone && updatePlayer(++x);
      }
 });
 
 function updatePlayer(x) {
-     currentPlayer = ["blue", "yellow","green", "pink"][x % 4];
-     console.log(currentPlayer, "d", diceNumber);
+     currentPlayer = ["blue", "yellow", "green", "pink"][x % 4];
+     // console.log(currentPlayer, "d", diceNumber);
      currentPlayerElement.innerText = currentPlayer.toUpperCase();
 }
 
@@ -83,3 +95,10 @@ function updatePlayer(x) {
 // }
 
 // 1 to 17 instead of 1 to 6????? edit: bad idea.
+
+
+
+
+document.querySelectorAll(".final-arrow, .token").forEach(el => {
+     el.style.width = `min(${el.parentElement.offsetWidth}px, ${el.parentElement.offsetHeight}px)`;
+})
