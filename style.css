@@ -114,7 +114,7 @@
     position: relative;
     overflow: hidden;
     background-color: #fff;
-    gap: 5px;
+    /* gap: 5px; */
 }
 
 /* .finish-square .direct {
@@ -178,9 +178,16 @@
     line-height: 0%;
 }
 
+.move-square .token {
+    scale: 1;
+}
+
 .place-square {
     background-color: transparent;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
+}
+.place-square .token {
+    scale: 1.7;
 }
 
 #trophy {
@@ -220,22 +227,28 @@
     background-color: var(--token-green-soft);
 }
 
-
-
+.stop {
+    /* color: #999; */
+    background-color: #f0f0f0;
+}
 .blue-stop {
     color: var(--token-blue-soft);
+    background-color: var(--token-blue-softest);
 }
 
 .yellow-stop {
     color: var(--token-yellow);
+    background-color: var(--token-yellow-softest);
 }
 
 .pink-stop {
     color: var(--token-pink);
+    background-color: var(--token-pink-softest);
 }
 
 .green-stop {
     color: var(--token-green);
+    background-color: var(--token-green-softest);
 }
 
 #current-player {

@@ -1,0 +1,7 @@
+- indexOf (value) vs findIndex (callback)
+- filter (callback)
+- ++count - post increment operator
+- Array.from(arrayLike)
+- getting height/width of an element using offsetWidth/offsetHeight
+- using querySelectorAll with multiple classes at the same time ie multiple args.
+
