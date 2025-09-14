@@ -1,0 +1,19 @@
+short term:
+- scale down the token, DONE
+- current player token on top, DONE
+- capture logic, ignore on stops, !DONE
+- auto Play when only option / only 1 token left, DONE
+- extra turn logic, DONE
+- hasMove logic
+- colored logic
+- animate capture and moves.
+
+
+
+
+
+
+
+
+long term:
+- online multiplayer
