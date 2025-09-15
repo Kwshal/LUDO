@@ -1,15 +1,19 @@
 short term:
 - scale down the token, DONE
 - current player token on top, DONE
-- capture logic, ignore on stops, !DONE
+- capture logic, ignore on stops, DONE
 - auto Play when only option / only 1 token left, DONE
 - extra turn logic, DONE
-- hasMove logic
-- colored logic
+- openToken hasNoMove logic, DONE
+- colored logic, DONE
+- win logic, DONE
+- ghost logic,???
 - animate capture and moves.
 
 
-
+probs:
+- clicking the token without a diceNumber results in permanent disabled dice, FIXED
+- captured tokens stacking at the same place in the homeSquare, FIXED
 
 
 

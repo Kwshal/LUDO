@@ -10,7 +10,6 @@ const currentPlayerElement = document.getElementById("current-player");
 let dice = document.getElementById("dice");
 let diceNumber = null;
 let currentPlayer = "blue";
-let tokenHasMove = true; //! add condition
 let diceRollable = true;
 let extraTurn = false;
 let turnDone = false;
@@ -31,7 +30,7 @@ dice.addEventListener("click", () => {
           diceRollable = false;
           extraTurn = false;
           turnDone = false;
-          if (!someOpenToken()) {
+          if (!someMovableToken()) {
                if (diceNumber !== 6) {
                     setTimeout(() => {
                          turnDone = true;
@@ -45,10 +44,10 @@ dice.addEventListener("click", () => {
           autoMove();
      }
 });
-function someOpenToken() {
-     let tokens = [...document.querySelectorAll(`.token-${currentPlayer}`)];
-     return tokens.some(token => {
-          return token.classList.contains("open") && tokenHasMove;
+function someMovableToken() {
+     let currentTokens = [...document.querySelectorAll(`.token-${currentPlayer}`)];
+     return currentTokens.some(token => {
+          return token.classList.contains("open") && (+token.dataset.squaresMoved + diceNumber) < 59;
      });
 }
 
@@ -56,37 +55,70 @@ board.addEventListener("click", e => {
      if (e.target.classList.contains("token") && e.target.classList.contains(`token-${currentPlayer}`)) {
           let token = e.target;
           let tokenIsOpen = token.classList.contains("open");
+          let tokenHasMove = +token.dataset.squaresMoved + diceNumber < 59;
           let startSquare = document.querySelector(`.${currentPlayer}-stop`);
           let currentSquare = +token.parentElement.dataset.sqNum;
           let idx = moveSquares.findIndex(sq => +sq.dataset.sqNum === (currentSquare + diceNumber) % 52);
           let nextSquare = moveSquares[idx];
-          let home = document.querySelector(`.${currentPlayer}-home`);
+          let squaresMoved = +token.dataset.squaresMoved;
+          let finalSquares = Array.from(document.querySelectorAll(`.final-square-${currentPlayer}`));
+          let finalSquare = finalSquares.find(sq => +sq.dataset.sqNum === (squaresMoved + diceNumber - 52));
 
-          if (diceNumber !== 6) {
-               if (tokenIsOpen && tokenHasMove) {
-                    captureToken(nextSquare);
-                    nextSquare.appendChild(token);
-                    turnDone = true;
-                    diceRollable = true;
+          if ((squaresMoved + diceNumber )<= 52) {
+               if (diceNumber === "#") return;
+               if (diceNumber !== 6) {
+                    if (tokenIsOpen && tokenHasMove) {
+                         captureToken(nextSquare);
+                         nextSquare.appendChild(token);
+                         turnDone = true;
+                         diceRollable = true;
+                         token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
+                         diceNumber = "#";
+                         dice.innerHTML = "#";
+                         token.style.scale = ".5";
+                    }
+               } else {
+                    if (tokenIsOpen && tokenHasMove) {
+                         token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
+                         captureToken(nextSquare);
+                         nextSquare.appendChild(token);
+                         diceRollable = true;
+                    } else {
+                         token.dataset.squaresMoved = `${squaresMoved + 1}`;
+                         startSquare.appendChild(token);
+                         token.classList.add("open");
+                         diceRollable = true;
+                    }
+                    turnDone = false;
+                    extraTurn = true;
+                    currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
                     diceNumber = "#";
                     dice.innerHTML = "#"
                     token.style.scale = ".5";
-               } else diceRollable = false;
-          } else {
-               if (tokenIsOpen && tokenHasMove) {
-                    captureToken(nextSquare);
-                    nextSquare.appendChild(token);
-                    diceRollable = true;
-               } else {
-                    startSquare.appendChild(token);
-                    token.classList.add("open");
-                    diceRollable = true;
                }
-               turnDone = false;
-               diceNumber = "#";
-               dice.innerHTML = "#"
-               token.style.scale = ".5";
+               // console.log(token.dataset.squaresMoved);
           }
+          else if ((squaresMoved + diceNumber)> 52 && (squaresMoved + diceNumber)< 58) {
+               finalSquare.appendChild(token);
+               turnDone = true;
+               diceRollable = true;
+               token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
+               diceNumber = "#";
+               dice.innerHTML = "#";
+          }
+          else if ((squaresMoved + diceNumber )=== 58) {
+               token.classList.add("colored");
+               token.classList.remove(`token-${currentPlayer}`);
+               token.style.scale = "1.7";
+               tokenIsColored[currentPlayer] += 1;
+               let homeSquare = document.querySelector(`.home-square-${currentPlayer}`);
+               homeSquare.appendChild(token);
+               diceNumber = "#";
+               dice.innerHTML = "#";
+               extraTurn = true;
+               currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
+               checkWinner();
+          } else return;
           !extraTurn && turnDone && updatePlayer(++x);
      }
 });
@@ -97,43 +129,29 @@ function updatePlayer(x) {
      priortiseTokens(tokens.filter(token => token.classList.contains(`token-${currentPlayer}`)));
 }
 
-
-// let colors = {
-//      blue: "blue",
-//      yellow: "yellow",
-//      green: "green",
-//      pink: "pink"
-// }
-const indicator = document.createElement("span");
-indicator.className = "indicator";
-
 function priortiseTokens(currentTokens) {
      tokens.forEach(token => {
           token.style.zIndex = "1";
-          token.style.boxShadow = "0 1px 2px gray"
-
-          // token.innerHTML = "";
-          // token.style.border = "none";
+          token.style.boxShadow = "0 1px 2px gray";
      });
      currentTokens.forEach(token => {
           token.style.zIndex = "2";
           token.style.boxShadow = "0 2px 3px gray";
-
-          // token.style.border = "1px solid";
-          // token.appendChild(indicator.cloneNode(true));
      });
 }
 
 function captureToken(square) {
-     if (!square.classList.contains(".stop")) {
-          let token = square.querySelector(".token");
-          if (token) {
-               token.style.scale = "1.7";
-               token.classList.remove("open");
-               let homeSquare = document.querySelector(`.home-square-${token.dataset.color}`)
-               homeSquare.appendChild(token);
-               extraTurn = true;
-          }
+     if (square.classList.contains("stop")) return;
+     let token = square.querySelector(".token");
+     if (token) {
+          token.style.scale = "1.7";
+          token.classList.remove("open");
+          let placeSquares = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`));
+          let placeSquare = placeSquares.find(sq => !sq.querySelector(".token"));
+          placeSquare.appendChild(token);
+          extraTurn = true;
+          currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
+          token.dataset.squaresMoved = "0";
      }
 }
 
@@ -141,18 +159,34 @@ function autoMove() {
      let tokens = Array.from(document.querySelectorAll(`.token-${currentPlayer}`));
      let allTokensClosed = tokens.every(token => !token.classList.contains("open"));
      let openTokens = tokens.filter(token => token.classList.contains("open"));
-     let onlyToken = openTokens.length === 1;
+     let onlyOpenToken = openTokens.length === 1;
+     let onlyMovableToken = getMovableTokens(openTokens).length === 1;
      let tokensAtSamePlace = openTokens.length > 0 && openTokens.every(token => token.parentElement.classList.contains(`${currentPlayer}-stop`));
 
      setTimeout(() => {
-          
-     if ((onlyToken || tokensAtSamePlace) && diceNumber !== 6) {
-          openTokens[0].click();
-     }
-     if (allTokensClosed && diceNumber === 6) {
-          tokens[0].click();
-     }
+          if ((onlyOpenToken || tokensAtSamePlace || onlyMovableToken) && diceNumber !== 6) {
+               openTokens[0].click();
+          }
+          if (allTokensClosed && diceNumber === 6) {
+               tokens[0].click();
+          }
      }, 600);
 }
 
-//? colored tokens can just have their .token removed.
+function getMovableTokens(openTokens) {
+     let movableTokens = openTokens.filter(token => token && ((+token.dataset.squaresMoved + diceNumber) < 59));
+     return movableTokens;
+}
+
+function checkWinner() {
+     let currentTokens = [...document.querySelectorAll(`.token-${currentPlayer}`)];
+     let win = currentTokens.every(token => token.classList.contains("colored"));
+     if (win) {
+          currentPlayerElement.innerHTML = `${currentPlayer.toUpperCase()} WINS!`;
+          dice.innerHTML = "✦";
+          // location.reload();
+     }
+     extraTurn = false;
+}
+
+
