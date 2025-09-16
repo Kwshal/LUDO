@@ -54,20 +54,19 @@ function someMovableToken() {
 board.addEventListener("click", e => {
      if (e.target.classList.contains("token") && e.target.classList.contains(`token-${currentPlayer}`)) {
           let token = e.target;
-          let tokenIsOpen = token.classList.contains("open");
-          let tokenHasMove = +token.dataset.squaresMoved + diceNumber < 59;
+          let tokenHasMove = token.classList.contains("open") && (+token.dataset.squaresMoved + diceNumber < 59);
           let startSquare = document.querySelector(`.${currentPlayer}-stop`);
           let currentSquare = +token.parentElement.dataset.sqNum;
-          let idx = moveSquares.findIndex(sq => +sq.dataset.sqNum === (currentSquare + diceNumber) % 52);
-          let nextSquare = moveSquares[idx];
+          let nextSquare = moveSquares.find(sq => +sq.dataset.sqNum === (currentSquare + diceNumber) % 52);
           let squaresMoved = +token.dataset.squaresMoved;
-          let finalSquares = Array.from(document.querySelectorAll(`.final-square-${currentPlayer}`));
-          let finalSquare = finalSquares.find(sq => +sq.dataset.sqNum === (squaresMoved + diceNumber - 52));
+          let finalSquare = Array.from(document.querySelectorAll(`.final-square-${currentPlayer}`)).find(sq => +sq.dataset.sqNum === (squaresMoved + diceNumber - 52));
 
-          if ((squaresMoved + diceNumber )<= 52) {
-               if (diceNumber === "#") return;
+          if (diceNumber === "#") return;
+          if (squaresMoved + diceNumber > 58) return;
+          
+          if ((squaresMoved + diceNumber) <= 52) {
                if (diceNumber !== 6) {
-                    if (tokenIsOpen && tokenHasMove) {
+                    if (tokenHasMove) {
                          captureToken(nextSquare);
                          nextSquare.appendChild(token);
                          turnDone = true;
@@ -78,7 +77,7 @@ board.addEventListener("click", e => {
                          token.style.scale = ".5";
                     }
                } else {
-                    if (tokenIsOpen && tokenHasMove) {
+                    if (tokenHasMove) {
                          token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
                          captureToken(nextSquare);
                          nextSquare.appendChild(token);
@@ -98,7 +97,7 @@ board.addEventListener("click", e => {
                }
                // console.log(token.dataset.squaresMoved);
           }
-          else if ((squaresMoved + diceNumber)> 52 && (squaresMoved + diceNumber)< 58) {
+          else if ((squaresMoved + diceNumber) > 52 && (squaresMoved + diceNumber) < 58) {
                finalSquare.appendChild(token);
                turnDone = true;
                diceRollable = true;
@@ -106,19 +105,21 @@ board.addEventListener("click", e => {
                diceNumber = "#";
                dice.innerHTML = "#";
           }
-          else if ((squaresMoved + diceNumber )=== 58) {
+          else if ((squaresMoved + diceNumber) === 58) {
                token.classList.add("colored");
                token.classList.remove(`token-${currentPlayer}`);
                token.style.scale = "1.7";
                tokenIsColored[currentPlayer] += 1;
-               let homeSquare = document.querySelector(`.home-square-${currentPlayer}`);
-               homeSquare.appendChild(token);
+               let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
+               placeSquare.appendChild(token);
+               token.innerHTML = "✪";
                diceNumber = "#";
                dice.innerHTML = "#";
+               diceRollable = true;
                extraTurn = true;
                currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
                checkWinner();
-          } else return;
+          }
           !extraTurn && turnDone && updatePlayer(++x);
      }
 });
@@ -146,8 +147,7 @@ function captureToken(square) {
      if (token) {
           token.style.scale = "1.7";
           token.classList.remove("open");
-          let placeSquares = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`));
-          let placeSquare = placeSquares.find(sq => !sq.querySelector(".token"));
+          let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
           placeSquare.appendChild(token);
           extraTurn = true;
           currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
@@ -189,4 +189,16 @@ function checkWinner() {
      extraTurn = false;
 }
 
+async function animateMoves(currentSquare, squaresMoved) {
+     for (let i = 1; i < diceNumber+1; i++) {
+          let nextSquare = moveSquares[(currentSquare + i) % 52];
+          setTimeout(() => {
+               if ((squaresMoved + i) < 52) {
+                    
+               }
+
+          }, 250);
+          (currentSquare+diceNumber === squaresMoved) && (diceRollable = true);
+     }
+}
 

@@ -7,8 +7,16 @@ short term:
 - openToken hasNoMove logic, DONE
 - colored logic, DONE
 - win logic, DONE
+
 - ghost logic,???
-- animate capture and moves.
+
+- animate:
+ - moves
+   -
+ - capture
+- online multiplayer
+
+
 
 
 probs:
@@ -19,5 +27,3 @@ probs:
 
 
 
-long term:
-- online multiplayer

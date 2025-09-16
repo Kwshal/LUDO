@@ -17,6 +17,11 @@
     --token-green-soft: #B8FFE6;
     --token-pink-soft: #FFD1E6;
 
+    --token-blue-dark: #424855;
+    --token-yellow-dark: #555244;
+    --token-pink-dark: #55424b;
+    --token-green-dark: #41554c;
+
     --token-blue-softest: #E5F2FF;
     --token-yellow-softest: #FFF8D7;
     --token-pink-softest: #FFEFEF;
@@ -52,6 +57,7 @@
         "home-1 path-1 home-2"
         "path-4 finish path-2"
         "home-4 path-3 home-3";
+    
 }
 
 
@@ -169,6 +175,7 @@
     transition-delay: 1000ms;
     position: relative;
     background-color: #fff;
+    color: grey;
 }
 
 
@@ -199,6 +206,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #666;
 }
 
 .token-blue {
@@ -217,9 +225,12 @@
     background-color: var(--token-green-soft);
 }
 
+
 .stop {
     /* color: #999; */
     background-color: #f0f0f0;
+    color: #666 !important;
+    font-size: 1.8em !important;
 }
 .blue-stop {
     color: var(--token-blue-soft);
@@ -265,17 +276,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    background-color: rgb(80, 80, 80);
 
 }
-/* .final-square-blue, .final-square-green {
-    box-shadow: inset 0 3px 3px -2px lightgray;
+/* .final-square-blue {
+    background-color: var(--token-blue-dark);
 }
-.final-square-yellow, .final-square-pink {
-    box-shadow: inset 1px 0 3px -2px lightgray;
+.final-square-yellow {
+    background-color: var(--token-yellow-dark);
 }
- */
-
+.final-square-pink {
+    background-color: var(--token-pink-dark);
+}
+.final-square-green {
+    background-color: var(--token-green-dark);
+} */
 
 
 .final-arrow {
