@@ -57,8 +57,9 @@
         "home-1 path-1 home-2"
         "path-4 finish path-2"
         "home-4 path-3 home-3";
-    
+        
 }
+
 
 
 .home-square {
@@ -68,20 +69,24 @@
     gap: 10%;
 }
 
-.home-square-1 {
+.home-square-blue {
     grid-area: home-1;
+    background-color: var(--token-blue-softest);
 }
 
-.home-square-2 {
+.home-square-yellow {
     grid-area: home-2;
+    background-color: var(--token-yellow-softest);
 }
 
-.home-square-3 {
+.home-square-green {
     grid-area: home-3;
+    background-color: var(--token-green-softest);
 }
 
-.home-square-4 {
+.home-square-pink {
     grid-area: home-4;
+    background-color: var(--token-pink-softest);
 
 }
 
@@ -178,6 +183,9 @@
     color: grey;
 }
 
+.place-square {
+    background-color: transparent;
+}
 
 .move-square, .place-square {
     font-size: 2em;
@@ -230,7 +238,7 @@
     /* color: #999; */
     background-color: #f0f0f0;
     color: #666 !important;
-    font-size: 1.8em !important;
+    font-size: 1.5em !important;
 }
 .blue-stop {
     color: var(--token-blue-soft);
