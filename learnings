@@ -4,4 +4,4 @@
 - Array.from(arrayLike)
 - getting height/width of an element using offsetWidth/offsetHeight
 - using querySelectorAll with multiple classes at the same time ie multiple args.
-
+- async/await and Promises

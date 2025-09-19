@@ -7,13 +7,15 @@ short term:
 - openToken hasNoMove logic, DONE
 - colored logic, DONE
 - win logic, DONE
-
 - ghost logic,???
 
+- active token will have a dashed ring.
+- conic gradient in finish square.
+
+
 - animate:
- - moves
-   -
- - capture
+ - moves, DONE
+ - capture     here!!
 - online multiplayer
 
 

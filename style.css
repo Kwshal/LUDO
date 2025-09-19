@@ -15,7 +15,7 @@
     --token-blue-soft: #A7C7FF;
     --token-yellow-soft: #FFF6B0;
     --token-green-soft: #B8FFE6;
-    --token-pink-soft: #FFD1E6;
+    --token-pink-soft: #ffd1d1;
 
     --token-blue-dark: #424855;
     --token-yellow-dark: #555244;
@@ -45,6 +45,19 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #555;
+}
+
+#title {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #555;
+    font-size: 5em;
+    background: conic-gradient(from -45deg, var(--token-blue-softest), var(--token-yellow-softest), var(--token-green-softest), var(--token-pink-softest), var(--token-blue-softest));
+    background-clip: text;
+    color: transparent;
+}
 
 #board {
     width: 100%;
@@ -124,7 +137,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background-color: #fff;
+    background: conic-gradient(from -45deg, var(--token-blue-softest), var(--token-yellow-softest), var(--token-green-softest), var(--token-pink-softest), var(--token-blue-softest));
     gap: 5px;
 }
 
@@ -215,6 +228,9 @@
     align-items: center;
     justify-content: center;
     color: #666;
+    font-size: 2.5em;
+    font-weight: bolder;
+    line-height: 0%;
 }
 
 .token-blue {
@@ -238,7 +254,7 @@
     /* color: #999; */
     background-color: #f0f0f0;
     color: #666 !important;
-    font-size: 1.5em !important;
+    font-size: 1em !important;
 }
 .blue-stop {
     color: var(--token-blue-soft);
@@ -272,12 +288,14 @@
     border-radius: 25%;
     border: none;
     box-shadow: 0 2px 3px lightgray;
+    color: #555;
 }
 
 #current-player {
         font-family: Helvetica, sans-serif;
         font-weight: bolder;
         font-size: 1em;
+        color: #555;
 }
 
 .final-square {
