@@ -1,29 +1,30 @@
 short term:
-- scale down the token, DONE
-- current player token on top, DONE
-- capture logic, ignore on stops, DONE
-- auto Play when only option / only 1 token left, DONE
-- extra turn logic, DONE
-- openToken hasNoMove logic, DONE
-- colored logic, DONE
-- win logic, DONE
-- ghost logic,???
-
-- active token will have a dashed ring.
-- conic gradient in finish square.
-
-
+<!-- - scale down the token, DONE -->
+<!-- - current player token on top, DONE -->
+<!-- - capture logic, ignore on stops, DONE -->
+<!-- - auto Play when only option / only 1 token left, DONE -->
+<!-- - extra turn logic, DONE -->
+<!-- - openToken hasNoMove logic, DONE -->
+<!-- - colored logic, DONE -->
+<!-- - win logic, DONE -->
+--- ghost logic,??? edit: ok so ghost token is the killed token which cant capture or be captured.
+<!-- - conic gradient in finish square. DONE -->
+- active token will have a dashed ring. NOT WORKING !!
 - animate:
- - moves, DONE
- - capture     here!!
-- online multiplayer
-
+ <!-- - moves, DONE -->
+ - capture !!!!!!
+- online multiplayer !!!!!!!!
+= animate dice ie slightly to the current player !!!!
+ -- remove the current player status and denote it by other means !!!
+ -- animate the dice roll !!!
 
 
 
 probs:
-- clicking the token without a diceNumber results in permanent disabled dice, FIXED
-- captured tokens stacking at the same place in the homeSquare, FIXED
+<!-- - clicking the token without a diceNumber results in permanent disabled dice, FIXED -->
+<!-- - captured tokens stacking at the same place in the homeSquare, FIXED -->
+<!-- -  star too big inside the finished token. FIXED -->
+- token not autoMoving even when it the only movable token !!!!!!
 
 
 

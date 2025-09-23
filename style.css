@@ -19,7 +19,7 @@
 
     --token-blue-dark: #424855;
     --token-yellow-dark: #555244;
-    --token-pink-dark: #55424b;
+    --token-pink-dark: #524249;
     --token-green-dark: #41554c;
 
     --token-blue-softest: #E5F2FF;
@@ -228,17 +228,31 @@ body {
     align-items: center;
     justify-content: center;
     color: #666;
-    font-size: 2.5em;
+    font-size: 1.3em !important;
     font-weight: bolder;
     line-height: 0%;
+}
+.token.active {
+    border: 2px dashed #000;
+    animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .token-blue {
     background-color: var(--token-blue-soft);
+    font-size: 1.2em !important;
 }
 
 .token-yellow {
     background-color: var(--token-yellow-soft);
+    font-size: 1.5em !important;
 }
 
 .token-pink {
