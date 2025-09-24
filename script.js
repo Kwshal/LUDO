@@ -5,6 +5,11 @@ const homeSquares = Array.from(document.querySelectorAll(".home-square"));
 document.querySelectorAll(".final-arrow, .token").forEach(el => {
      el.style.width = `min(${el.parentElement.offsetWidth}px, ${el.parentElement.offsetHeight}px)`;
 });
+// for (let i = 1; i <= 4; i++) {
+//      ["blue", "yellow", "pink", "green"].forEach(color => {
+//      document.querySelector(`.token-${color}:nth-child(${1}`).style.transitionDelay = `${i * 0.1}s`;
+//      });
+// }
 const currentPlayerElement = document.getElementById("current-player");
 
 let dice = document.getElementById("dice");
@@ -23,7 +28,7 @@ let tokensColored = {
      green: 0
 };
 
-dice.addEventListener("click", () => {
+dice.addEventListener("click", async () => {
      if (diceRollable) {
           // console.log(diceRollable);
           activateTokens(getCurrTokens());
@@ -70,7 +75,8 @@ board.addEventListener("click", e => {
 
 function colorToken(token) {
      let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
-     placeSquare.appendChild(token);
+     // placeSquare.appendChild(token);
+     animateMovement(placeSquare, token, 1.7);
      token.classList.add("colored");
      token.classList.remove(`token-${currentPlayer}`);
      token.style.scale = "1.7";
@@ -91,11 +97,14 @@ async function moveToken(token) {
 
      extraTurn = diceNumber === 6;
 
+     // token.style.translate = "0 -5px";
+     // await new Promise(resolve => setTimeout(resolve, 500));
      for (let i = 1; i <= diceNumber; i++) {
           // console.log(token.dataset.squaresMoved, "a");
 
           if (squaresMoved === 0 && diceNumber === 6) {
-               startSquare.appendChild(token);
+               // startSquare.appendChild(token);
+               animateMovement(startSquare, token);
                token.style.scale = ".5";
                // console.log("here");
                token.classList.add("open");
@@ -103,16 +112,19 @@ async function moveToken(token) {
                break;
           } else if (squaresMoved + i < 53) {
                i === diceNumber && captureToken(moveSquare(i)) && (extraTurn = true);
-               moveSquare(i).appendChild(token);
+               // moveSquare(i).appendChild(token);
+               animateMovement(moveSquare(i), token);
                await new Promise(resolve => setTimeout(resolve, 250));
           } else if (squaresMoved + i === 58) {
                colorToken(token);
                extraTurn = true;
           } else {
-               finalSquare(i).appendChild(token);
+               // finalSquare(i).appendChild(token);
+               animateMovement(finalSquare(i), token);
                await new Promise(resolve => setTimeout(resolve, 250));
           }
      }
+     // token.style.translate = "0 0px";
      token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
      // console.log(token.dataset.squaresMoved);
      !extraTurn && deactivateTokens(getCurrTokens()) && updatePlayer(++x) && console.log("move");
@@ -145,17 +157,42 @@ function captureToken(square) {
      if (square.classList.contains("stop")) return;
      let token = square.querySelector(".token");
      if (token) {
-          token.style.scale = "1.7";
+          token.style.zIndex = "99999";
           console.log("here");
           token.classList.remove("open");
           let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
-          placeSquare.appendChild(token);
+          // placeSquare.appendChild(token);
           //todo animate token going back to home
+          animateMovement(placeSquare, token, 1.7);
           currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
           token.dataset.squaresMoved = "0";
           return true;
      }
      return false;
+}
+async function animateMovement(square, token, val = 0.7) {
+     let rect1 = token.getBoundingClientRect();
+     let rect2 = square.getBoundingClientRect();
+
+     // centers
+     let tokenCenterX = rect1.left + rect1.width / 2;
+     let tokenCenterY = rect1.top + rect1.height / 2;
+     let squareCenterX = rect2.left + rect2.width / 2;
+     let squareCenterY = rect2.top + rect2.height / 2;
+
+     // deltas
+     let deltaX = squareCenterX - tokenCenterX;
+     let deltaY = squareCenterY - tokenCenterY;
+
+     //     token.style.transition = "transform 0.5s ease-in-out";
+     token.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.7)`;
+
+     await new Promise(resolve => setTimeout(resolve, 100));
+
+     token.style.transition = "";
+     token.style.transform = "";
+     square.appendChild(token);
+     token.style.scale = `${val}`;
 }
 
 function autoMove() {
@@ -202,3 +239,5 @@ function deactivateTokens(currentTokens) {
 function getCurrTokens() {
      return Array.from(document.querySelectorAll(`.token-${currentPlayer}`));
 }
+
+

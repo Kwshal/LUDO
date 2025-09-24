@@ -47,13 +47,13 @@
 }
 
 body {
-    background: #555;
+    background: black;
 }
 
 #title {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    color: #555;
+    color: black;
     font-size: 5em;
     background: conic-gradient(from -45deg, var(--token-blue-softest), var(--token-yellow-softest), var(--token-green-softest), var(--token-pink-softest), var(--token-blue-softest));
     background-clip: text;
@@ -71,7 +71,9 @@ body {
         "home-1 path-1 home-2"
         "path-4 finish path-2"
         "home-4 path-3 home-3";
-        
+    /* background-color: white; */
+    /* gap: 2px; */
+    background: conic-gradient(from -45deg, var(--token-blue-softest), var(--token-yellow-softest), var(--token-green-softest), var(--token-pink-softest), var(--token-blue-softest));
 }
 
 
@@ -82,6 +84,7 @@ body {
     padding: 20%;
     gap: 10%;
 }
+
 
 .home-square-blue {
     grid-area: home-1;
@@ -191,21 +194,23 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition-delay: 1000ms;
+    /* transition-delay: 1000ms; */
     position: relative;
-    background-color: #fff;
-    color: grey;
+    /* background-color: #fff; */
+    color: black;
 }
 
 .place-square {
     background-color: transparent;
 }
 
-.move-square, .place-square {
+.move-square,
+.place-square {
     font-size: 2em;
     font-weight: bolder;
     line-height: 0%;
 }
+
 .place-square .token {
     scale: 1.7;
 }
@@ -219,10 +224,10 @@ body {
     /* width: 80%; */
     aspect-ratio: 1;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.6s;
     z-index: 2;
     background: white;
-    position: relative;
+    position: absolute;
     border-radius: 50%;
     box-shadow: 0 1px 2px gray;
     display: flex;
@@ -233,19 +238,24 @@ body {
     font-weight: bolder;
     line-height: 0%;
     pointer-events: all;
+    border-bottom: 2px solid #00000020;
 }
+
 .active {
     border: 2px dashed #000;
     animation: rotate 2s linear infinite;
 }
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 }
+
 .icon {
     width: 60%;
     height: 60%;
@@ -255,9 +265,10 @@ body {
     background-color: var(--token-blue-soft);
     /* font-size: 1.2em !important; */
 }
+
 .token-blue .icon {
-    width: 70%;
-    height: 70%;
+    width: 65%;
+    height: 65%;
 }
 
 .token-yellow {
@@ -277,26 +288,27 @@ body {
 .stop {
     /* color: #999; */
     background-color: #f0f0f0;
-    color: #666 !important;
-    font-size: 1em !important;
+    color: black;
+    font-size: 1.2em !important;
 }
+
 .blue-stop {
-    color: var(--token-blue-soft);
+    /* color: var(--token-blue-soft); */
     background-color: var(--token-blue-softest);
 }
 
 .yellow-stop {
-    color: var(--token-yellow);
+    /* color: var(--token-yellow-soft); */
     background-color: var(--token-yellow-softest);
 }
 
 .pink-stop {
-    color: var(--token-pink);
+    /* color: var(--token-pink-soft); */
     background-color: var(--token-pink-softest);
 }
 
 .green-stop {
-    color: var(--token-green);
+    /* color: var(--token-green-soft); */
     background-color: var(--token-green-softest);
 }
 
@@ -311,25 +323,35 @@ body {
     font-size: 30px;
     border-radius: 25%;
     border: none;
+    /* border-bottom: 2px solid #00000020; */
     box-shadow: 0 2px 3px lightgray;
-    color: #555;
+    color: black;
     pointer-events: all;
+    transition: all 0.1s;
+}
+
+#dice:active {
+    box-shadow: none;
+    /* border-bottom: none; */
+    transform: translateY(1.9px);
+    scale: 0.98;
 }
 
 #current-player {
-        font-family: Helvetica, sans-serif;
-        font-weight: bolder;
-        font-size: 1em;
-        color: #555;
+    font-family: Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 1em;
+    color: black;
 }
 
 .final-square {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(80, 80, 80);
+    background-color: black;
 
 }
+
 /* .final-square-blue {
     background-color: var(--token-blue-dark);
 }
@@ -350,17 +372,19 @@ body {
     align-items: center;
 }
 
-.final-arrow svg, .token {
+.final-arrow svg,
+.token {
     aspect-ratio: 1;
 }
 
 .path-cont {
-    background-color: grey !important;
-    gap: .5px;
-    border-radius: 3px;
-    box-shadow: 0 1px 3px lightgray;
-    z-index: 9;
-    overflow: hidden;
+    background-color: white;
+    /* gap: 1px; */
+    /* border-radius: 13px; */
+    /* box-shadow: none; */
+    /* z-index: 1; */
+    /* border-bottom: 2px solid #00000020; */
+    /* overflow: hidden; */
 }
 
 .indicator {

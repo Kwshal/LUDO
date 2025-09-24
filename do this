@@ -10,8 +10,8 @@ short term:
 --- ghost logic,??? edit: ok so ghost token is the killed token which cant capture or be captured.
 <!-- - conic gradient in finish square. DONE -->
 - active token will have a dashed ring. NOT WORKING !!
-- animate:
- <!-- - moves, DONE -->
+<!-- - animate: -->
+ <!-- - moves, DONE, edit:improved -->
  - capture !!!!!!
 - online multiplayer !!!!!!!!
 = animate dice ie slightly to the current player !!!!
@@ -24,7 +24,7 @@ probs:
 <!-- - clicking the token without a diceNumber results in permanent disabled dice, FIXED -->
 <!-- - captured tokens stacking at the same place in the homeSquare, FIXED -->
 <!-- -  star too big inside the finished token. FIXED -->
-- token not autoMoving even when it the only movable token !!!!!!
+- token not autoMoving even when it the only movable token FIXED (probably)
 
 
 
