@@ -2,7 +2,7 @@ const board = document.getElementById("board");
 const tokens = Array.from(document.querySelectorAll(".token"));
 const moveSquares = Array.from(document.querySelectorAll(".move-square"));
 const homeSquares = Array.from(document.querySelectorAll(".home-square"));
-document.querySelectorAll(".final-arrow, .token").forEach(el => {
+document.querySelectorAll(".final-arrow, .token, .star").forEach(el => {
      el.style.width = `min(${el.parentElement.offsetWidth}px, ${el.parentElement.offsetHeight}px)`;
 });
 // for (let i = 1; i <= 4; i++) {
@@ -145,11 +145,11 @@ function updatePlayer(x) {
 function priortiseTokens(currentTokens) {
      tokens.forEach(token => {
           token.style.zIndex = "1";
-          token.style.boxShadow = "0 1px 2px gray";
+          token.style.boxShadow = "0 1px 2px black";
      });
      currentTokens.forEach(token => {
           token.style.zIndex = "2";
-          token.style.boxShadow = "0 2px 3px gray";
+          token.style.boxShadow = "0 2px 3px black";
      });
 }
 
@@ -184,10 +184,10 @@ async function animateMovement(square, token, val = 0.7) {
      let deltaX = squareCenterX - tokenCenterX;
      let deltaY = squareCenterY - tokenCenterY;
 
-     //     token.style.transition = "transform 0.5s ease-in-out";
+         token.style.transition = "transform 0.5s ease-in-out";
      token.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.7)`;
 
-     await new Promise(resolve => setTimeout(resolve, 100));
+     await new Promise(resolve => setTimeout(resolve, 250));
 
      token.style.transition = "";
      token.style.transform = "";
