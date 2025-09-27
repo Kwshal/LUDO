@@ -6,7 +6,7 @@ document.querySelectorAll(".final-arrow, .token, .star").forEach(el => {
      el.style.width = `min(${el.parentElement.offsetWidth}px, ${el.parentElement.offsetHeight}px)`;
 });
 // for (let i = 1; i <= 4; i++) {
-//      ["blue", "yellow", "pink", "green"].forEach(color => {
+//      ["blue", "yellow", "red", "green"].forEach(color => {
 //      document.querySelector(`.token-${color}:nth-child(${1}`).style.transitionDelay = `${i * 0.1}s`;
 //      });
 // }
@@ -19,12 +19,15 @@ let diceRollable = true;
 let extraTurn = false;
 let turnDone = false;
 
+let players = ["blue", "yellow", "green", "red"];
 let x = -1;
+let y = 4; // to track current player
+
 let tokenIsColored = false;
 let tokensColored = {
      blue: 0,
      yellow: 0,
-     pink: 0,
+     red: 0,
      green: 0
 };
 
@@ -38,15 +41,6 @@ dice.addEventListener("click", async () => {
           diceRollable = false;
           turnDone = false;
           extraTurn = false;
-          if (!someMovableToken()) {
-               if (diceNumber !== 6) {
-                    setTimeout(() => {
-                         turnDone = true;
-                         updatePlayer(++x) && console.log("auto");
-                         initDice();
-                    }, 600);
-               }
-          }
           autoMove();
      }
 });
@@ -58,11 +52,12 @@ function someMovableToken() {
      });
 }
 
-function initDice() {
+function handleDice() {
      // !extraTurn && updatePlayer(++x) && console.log("handle");
      diceRollable = true;
      dice.innerHTML = "#";
      diceNumber = "#";
+     // move the dice slightly to the current player
 }
 
 board.addEventListener("click", e => {
@@ -76,73 +71,79 @@ board.addEventListener("click", e => {
 function colorToken(token) {
      let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
      // placeSquare.appendChild(token);
-     animateMovement(placeSquare, token, 1.7);
+     animateMovement(placeSquare, token, 1);
      token.classList.add("colored");
      token.classList.remove(`token-${currentPlayer}`);
-     token.style.scale = "1.7";
-     console.log("here");
-     token.innerHTML = "✪";
+     token.style.transform = "scale(1)";
+     token.style.backgroundColor = `var(--${currentPlayer}-soft)`;
+     // console.log("here");
+     // token.innerHTML = "✪";
      tokenIsColored[currentPlayer] += 1;
      currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
      checkWinner();
 }
 
 async function moveToken(token) {
-
      let startSquare = document.querySelector(`.${currentPlayer}-stop`);
      let currentSquare = +token.parentElement.dataset.sqNum;
      let squaresMoved = +token.dataset.squaresMoved;
-     let moveSquare = (i) => moveSquares.find(sq => +sq.dataset.sqNum === (currentSquare + i) % 52);
-     let finalSquare = (i) => Array.from(document.querySelectorAll(`.final-square-${currentPlayer}`)).find(sq => +sq.dataset.sqNum === (squaresMoved + i - 52));
+     let progress = squaresMoved; // track local progress
 
+     if (progress + diceNumber > 58) return; // cannot move
      extraTurn = diceNumber === 6;
 
-     // token.style.translate = "0 -5px";
-     // await new Promise(resolve => setTimeout(resolve, 500));
      for (let i = 1; i <= diceNumber; i++) {
-          // console.log(token.dataset.squaresMoved, "a");
+          progress++; // step forward
 
-          if (squaresMoved === 0 && diceNumber === 6) {
-               // startSquare.appendChild(token);
-               animateMovement(startSquare, token);
-               token.style.scale = ".5";
-               // console.log("here");
+          if (squaresMoved === 0 && diceNumber === 6 && i === 1) {
+               // first entry to stop square
+               await animateMovement(startSquare, token);
+               token.style.transform = "scale(0.7)";
                token.classList.add("open");
-               diceNumber = 1;
                break;
-          } else if (squaresMoved + i < 53) {
-               i === diceNumber && captureToken(moveSquare(i)) && (extraTurn = true);
-               // moveSquare(i).appendChild(token);
-               animateMovement(moveSquare(i), token);
-               await new Promise(resolve => setTimeout(resolve, 250));
-          } else if (squaresMoved + i === 58) {
+          } else if (progress < 53) {
+               // normal board squares
+               let square = moveSquares.find(sq => +sq.dataset.sqNum === (currentSquare + i) % 52);
+               if (i === diceNumber) captureToken(square) && (extraTurn = true);
+               await animateMovement(square, token);
+          } else if (progress < 58) {
+               // final colored path (53–57)
+               let square = document.querySelector(
+                    `.final-square-${currentPlayer}[data-sq-num="${progress - 52}"]`
+               );
+               await animateMovement(square, token);
+          } else if (progress === 58) {
+               // reached home
                colorToken(token);
                extraTurn = true;
-          } else {
-               // finalSquare(i).appendChild(token);
-               animateMovement(finalSquare(i), token);
-               await new Promise(resolve => setTimeout(resolve, 250));
+               break;
           }
      }
-     // token.style.translate = "0 0px";
-     token.dataset.squaresMoved = `${squaresMoved + diceNumber}`;
-     // console.log(token.dataset.squaresMoved);
-     !extraTurn && deactivateTokens(getCurrTokens()) && updatePlayer(++x) && console.log("move");
-     initDice();
-     // console.log(diceRollable);
+
+     if (diceNumber !== "#") token.dataset.squaresMoved = `${progress}`;
+
+     if (!extraTurn) {
+          deactivateTokens(getCurrTokens());
+          updatePlayer(++x);
+     }
+
+     handleDice();
 }
 
 
 function updatePlayer(x) {
      // return; 
-     currentPlayer = ["blue", "yellow", "green", "pink"][x % 4];
-     currentPlayerElement.innerText = currentPlayer.toUpperCase();
-     priortiseTokens(tokens.filter(token => token.classList.contains(`token-${currentPlayer}`)));
+     currentPlayer = ["blue", "yellow", "green", "red"][x % 4];
+     currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + "<span id='turn'>'s Turn</span>";
+     currentPlayerElement.style.color = `var(--${currentPlayer})`;
+     prepareTokens(tokens.filter(token => token.classList.contains(`token-${currentPlayer}`)));
      // console.log("switched");
+     dice.style.translate = ["-45% -45%", "45% -45%", "45% 45%", "-45% 45%"][x % 4];
+     dice.style.color = `var(--${currentPlayer}-dark)`;
      return true;
 }
 
-function priortiseTokens(currentTokens) {
+function prepareTokens(currentTokens) {
      tokens.forEach(token => {
           token.style.zIndex = "1";
           token.style.boxShadow = "0 1px 2px black";
@@ -163,53 +164,129 @@ function captureToken(square) {
           let placeSquare = Array.from(document.querySelectorAll(`.home-square-${token.dataset.color} .place-square`)).find(sq => !sq.querySelector(".token"));
           // placeSquare.appendChild(token);
           //todo animate token going back to home
-          animateMovement(placeSquare, token, 1.7);
+          animateMovement(placeSquare, token, 1);
           currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
           token.dataset.squaresMoved = "0";
           return true;
      }
      return false;
 }
-async function animateMovement(square, token, val = 0.7) {
-     let rect1 = token.getBoundingClientRect();
-     let rect2 = square.getBoundingClientRect();
+function animateMovement(square, token, val = 0.7) {
+     return new Promise(resolve => {
+          const rect1 = token.getBoundingClientRect();
+          const rect2 = square.getBoundingClientRect();
 
-     // centers
-     let tokenCenterX = rect1.left + rect1.width / 2;
-     let tokenCenterY = rect1.top + rect1.height / 2;
-     let squareCenterX = rect2.left + rect2.width / 2;
-     let squareCenterY = rect2.top + rect2.height / 2;
+          // centers
+          const tokenCenterX = rect1.left + rect1.width / 2;
+          const tokenCenterY = rect1.top + rect1.height / 2;
+          const squareCenterX = rect2.left + rect2.width / 2;
+          const squareCenterY = rect2.top + rect2.height / 2;
 
-     // deltas
-     let deltaX = squareCenterX - tokenCenterX;
-     let deltaY = squareCenterY - tokenCenterY;
+          // deltas
+          const deltaX = squareCenterX - tokenCenterX;
+          const deltaY = squareCenterY - tokenCenterY;
 
-         token.style.transition = "transform 0.5s ease-in-out";
-     token.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.7)`;
+          // set transition in CSS, not JS
 
-     await new Promise(resolve => setTimeout(resolve, 250));
+          token.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(${.8})`;
 
-     token.style.transition = "";
-     token.style.transform = "";
-     square.appendChild(token);
-     token.style.scale = `${val}`;
+          function handleEnd(e) {
+               if (e.propertyName === "transform") {
+                    token.removeEventListener("transitionend", handleEnd);
+
+                    // reset transform and actually move the token
+                    token.style.transform = `scale(${val})`;
+                    square.appendChild(token);
+                    resolve();
+               }
+          }
+
+          token.addEventListener("transitionend", handleEnd);
+     });
 }
 
 function autoMove() {
-     let tokens = Array.from(document.querySelectorAll(`.token-${currentPlayer}`));
-     let allTokensClosed = tokens.every(token => !token.classList.contains("open"));
-     let openTokens = tokens.filter(token => token.classList.contains("open"));
-     let onlyOpenToken = openTokens.length === 1;
-     let onlyMovableToken = getMovableTokens(openTokens).length === 1;
-     let tokensAtSamePlace = openTokens.length > 0 && openTokens.every(token => token.parentElement.classList.contains(`${currentPlayer}-stop`));
-     let r = Math.floor(Math.random() * 4);
+
+     if (!someMovableToken()) {
+          if (diceNumber !== 6) {
+               setTimeout(() => {
+                    turnDone = true;
+                    updatePlayer(++x) && console.log("auto");
+                    handleDice();
+               }, 600);
+          }
+     }
+
+     // gather all tokens of this player (includes colored tokens)
+     const allTokens = Array.from(document.querySelectorAll(".token")).filter(t => t.dataset.color === currentPlayer);
+
+     const openTokens = allTokens.filter(t => t.classList.contains("open") && !t.classList.contains("colored"));
+     const closedTokens = allTokens.filter(t => !t.classList.contains("open") && !t.classList.contains("colored"));
+     const coloredCount = allTokens.filter(t => t.classList.contains("colored")).length;
+     const movable = getMovableTokens(openTokens); // relies on dataset.squaresMoved
+
      setTimeout(() => {
-          if ((onlyOpenToken || tokensAtSamePlace || onlyMovableToken) && diceNumber !== 6) {
+          // ---- Case 5 (expanded): Only one token left to finish (three already colored) ----
+          if (coloredCount === 3) {
+               // if the remaining token is already open -> move it
+               if (openTokens.length === 1) {
+                    openTokens[0].click();
+                    return;
+               }
+               // if the remaining token is closed and we rolled a 6 -> spawn it
+               if (closedTokens.length === 1 && diceNumber === 6) {
+                    closedTokens[0].click();
+                    return;
+               }
+               // otherwise no auto-move
+               return;
+          }
+
+          // ---- Case 1: All tokens closed, dice = 6 -> spawn one ----
+          if (closedTokens.length === allTokens.length && diceNumber === 6) {
+               closedTokens[0].click();
+               return;
+          }
+
+          // ---- Case 2: Only one open token -> move it ----
+          if (openTokens.length === 1) {
                openTokens[0].click();
+               return;
           }
-          if (allTokensClosed && diceNumber === 6) {
-               tokens[r].click();
+
+          // ---- Case 3: Only one token can move among opens -> move it ----
+          if (movable.length === 1) {
+               movable[0].click();
+               return;
           }
+          if (movable.length === 0 && closedTokens.length === 0) {
+               turnDone = true;
+               updatePlayer(++x) && console.log("auto");
+               handleDice();
+
+               // no token can move, do nothing
+               return;
+          }
+
+          // ---- Case 4 (expanded): All open tokens are on a stop (any stop), dice != 6 ----
+          // This covers stacks on stops that are NOT necessarily your own stop.
+          if (
+               openTokens.length > 0 &&
+               openTokens.every(t => t.parentElement.classList.contains("stop")) &&
+               diceNumber !== 6
+          ) {
+               openTokens[0].click();
+               return;
+          }
+
+          // ---- Case 6: Exactly one can reach home with this roll ----
+          const homeMovers = openTokens.filter(t => (+t.dataset.squaresMoved + diceNumber) === 58);
+          if (homeMovers.length === 1) {
+               homeMovers[0].click();
+               return;
+          }
+
+          // otherwise: do nothing — player must choose
      }, 600);
 }
 
@@ -227,6 +304,13 @@ function checkWinner() {
           // location.reload();
      }
      extraTurn = false;
+     players.splice(players.indexOf(currentPlayer), 1);
+     y--;
+     if (y === 1) {
+          setTimeout(() => {
+               location.reload();
+          }, 2000);
+     }
 }
 
 function activateTokens(currTokens) {

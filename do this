@@ -12,19 +12,28 @@ short term:
 - active token will have a dashed ring. NOT WORKING !!
 <!-- - animate: -->
  <!-- - moves, DONE, edit:improved -->
- - capture !!!!!!
-- online multiplayer !!!!!!!!
+ <!-- - capture !!!!!! -->
 = animate dice ie slightly to the current player !!!!
- -- remove the current player status and denote it by other means !!!
+ <!-- -- remove the current player status and denote it by other means !!! -->
  -- animate the dice roll !!!
 
 
+NEW
+  - single, double, triple and quadriple player options.
+  - online multiplayer
+  - bots
+  
 
 probs:
 <!-- - clicking the token without a diceNumber results in permanent disabled dice, FIXED -->
 <!-- - captured tokens stacking at the same place in the homeSquare, FIXED -->
 <!-- -  star too big inside the finished token. FIXED -->
-- token not autoMoving even when it the only movable token FIXED (probably)
+<!-- - token stops moving suddening. FIXED. it was squaredMoved has added the "#" in the number which resulted error. -->
+<!-- - token not autoMoving when its the last. FIXED -->
+<!-- - token skipping squares at the last stop. FIXED -->
+<!-- - dice rolling for the already won player. FIXED -->
+
+
 
 
 

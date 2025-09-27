@@ -10,7 +10,9 @@
 </head>
 
 <body>
-    <h1 id="title">LUDO</h1>
+    <!-- <h1 id="title">LUDO</h1> -->
+    <p id="current-player">BLUE<span id="turn">'s Turn</span></p>
+
     <div id="board">
         <div class="home-square home-square-blue">
             <div class="place-square"><span class="token token-blue" data-squares-moved="0" data-color="blue">
@@ -40,17 +42,17 @@
                     <img src="img/fire.png" alt="icon" class="icon">
                 </span></div>
         </div>
-        <div class="home-square home-square-pink">
-            <div class="place-square"><span class="token token-pink" data-squares-moved="0" data-color="pink">
+        <div class="home-square home-square-red">
+            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-pink" data-squares-moved="0" data-color="pink">
+            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-pink" data-squares-moved="0" data-color="pink">
+            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-pink" data-squares-moved="0" data-color="pink">
+            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
         </div>
@@ -73,8 +75,7 @@
             <span class="direct blue"></span>
             <span class="direct yellow"></span>
             <span class="direct green"></span>
-            <span class="direct pink"></span>
-            <p id="current-player">BLUE</p>
+            <span class="direct red"></span>
             <button id="dice">#</button>
         </div>
 
@@ -82,9 +83,9 @@
             <div class="move-square" data-sq-num="12">⬤</div>
             <div class="move-square yellow" data-sq-num="13">⬤</div>
             <div class="move-square stop yellow-stop" data-sq-num="14">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -126,9 +127,9 @@
                 </span></div>
             <div class="move-square " data-sq-num="16">⬤</div>
             <div class="move-square stop" data-sq-num="9">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -188,9 +189,9 @@
             <div class="move-square " data-sq-num="20">⬤</div>
             <div class="move-square " data-sq-num="21">⬤</div>
             <div class="move-square   stop" data-sq-num="22">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -276,9 +277,9 @@
             <div class="move-square" data-sq-num="29">⬤</div>
             <div class="move-square" data-sq-num="28">⬤</div>
             <div class="move-square  stop green-stop" data-sq-num="27">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -292,7 +293,7 @@
         </div>
         <div class="path-cont path-cont-3">
             <div class="move-square " data-sq-num="45">⬤</div>
-            <div class="final-square  final-square-pink" data-sq-num="5"><span class="final-arrow pink">
+            <div class="final-square  final-square-red" data-sq-num="5"><span class="final-arrow red">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         transform="matrix(-1, 0, 0, 1, 0, 0)rotate(90)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -307,7 +308,7 @@
                 </span></div>
             <div class="move-square " data-sq-num="33">⬤</div>
             <div class="move-square " data-sq-num="44">⬤</div>
-            <div class="final-square  final-square-pink" data-sq-num="4"><span class="final-arrow pink">
+            <div class="final-square  final-square-red" data-sq-num="4"><span class="final-arrow red">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         transform="matrix(-1, 0, 0, 1, 0, 0)rotate(90)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -322,7 +323,7 @@
                 </span></div>
             <div class="move-square " data-sq-num="34">⬤</div>
             <div class="move-square " data-sq-num="43">⬤</div>
-            <div class="final-square  final-square-pink" data-sq-num="3"><span class="final-arrow pink">
+            <div class="final-square  final-square-red" data-sq-num="3"><span class="final-arrow red">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         transform="matrix(-1, 0, 0, 1, 0, 0)rotate(90)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -336,9 +337,9 @@
 
                 </span></div>
             <div class="move-square   stop" data-sq-num="35">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -350,7 +351,7 @@
                     </svg></span>
             </div>
             <div class="move-square" data-sq-num="42">⬤</div>
-            <div class="final-square final-square-pink" data-sq-num="2"><span class="final-arrow pink">
+            <div class="final-square final-square-red" data-sq-num="2"><span class="final-arrow red">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         transform="matrix(-1, 0, 0, 1, 0, 0)rotate(90)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -365,7 +366,7 @@
                 </span></div>
             <div class="move-square" data-sq-num="36">⬤</div>
             <div class="move-square" data-sq-num="41">⬤</div>
-            <div class="final-square final-square-pink" data-sq-num="1"><span class="final-arrow pink">
+            <div class="final-square final-square-red" data-sq-num="1"><span class="final-arrow red">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                         transform="matrix(-1, 0, 0, 1, 0, 0)rotate(90)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -379,10 +380,10 @@
 
                 </span></div>
             <div class="move-square" data-sq-num="37">⬤</div>
-            <div class="move-square stop pink-stop" data-sq-num="40">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+            <div class="move-square stop red-stop" data-sq-num="40">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -398,9 +399,9 @@
         </div>
         <div class="path-cont path-cont-4">
             <div class="move-square  stop blue-stop" data-sq-num="1">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -486,9 +487,9 @@
             <div class="move-square" data-sq-num="50">⬤</div>
             <div class="move-square" data-sq-num="49">⬤</div>
             <div class="move-square stop" data-sq-num="48">
-                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="-32.99 -32.99 395.92 395.92" xml:space="preserve" stroke="#000000">
+                <span class="star"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-32.99 -32.99 395.92 395.92"
+                        xml:space="preserve" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
                             stroke-width="8.578492"></g>
@@ -504,7 +505,7 @@
         </div>
     </div>
 
-    <p id="current-square-number"></p>
+    <!-- single, double, triple, quadruple players -->
 
     <script src="script.js"></script>
 </body>
