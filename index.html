@@ -15,58 +15,58 @@
 
     <div id="board">
         <div class="home-square home-square-blue">
-            <div class="place-square"><span class="token token-blue" data-squares-moved="0" data-color="blue">
+            <div class="place-square"><span id="blue1" class="token token-blue" data-squares-moved="0" data-color="blue">
                     <img src="img/drops.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-blue" data-squares-moved="0" data-color="blue">
+            <div class="place-square"><span id="blue2" class="token token-blue" data-squares-moved="0" data-color="blue">
                     <img src="img/drops.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-blue" data-squares-moved="0" data-color="blue">
+            <div class="place-square"><span id="blue3" class="token token-blue" data-squares-moved="0" data-color="blue">
                     <img src="img/drops.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-blue" data-squares-moved="0" data-color="blue">
+            <div class="place-square"><span id="blue4" class="token token-blue" data-squares-moved="0" data-color="blue">
                     <img src="img/drops.png" alt="icon" class="icon">
                 </span></div>
         </div>
         <div class="home-square home-square-yellow">
-            <div class="place-square"><span class="token token-yellow" data-squares-moved="0" data-color="yellow">
+            <div class="place-square"><span id="yellow1" class="token token-yellow" data-squares-moved="0" data-color="yellow">
                     <img src="img/fire.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-yellow" data-squares-moved="0" data-color="yellow">
+            <div class="place-square"><span id="yellow2" class="token token-yellow" data-squares-moved="0" data-color="yellow">
                     <img src="img/fire.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-yellow" data-squares-moved="0" data-color="yellow">
+            <div class="place-square"><span id="yellow3" class="token token-yellow" data-squares-moved="0" data-color="yellow">
                     <img src="img/fire.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-yellow" data-squares-moved="0" data-color="yellow">
+            <div class="place-square"><span id="yellow4" class="token token-yellow" data-squares-moved="0" data-color="yellow">
                     <img src="img/fire.png" alt="icon" class="icon">
                 </span></div>
         </div>
         <div class="home-square home-square-red">
-            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
+            <div class="place-square"><span id="red1" class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
+            <div class="place-square"><span id="red2" class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
+            <div class="place-square"><span id="red3" class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-red" data-squares-moved="0" data-color="red">
+            <div class="place-square"><span id="red4" class="token token-red" data-squares-moved="0" data-color="red">
                     <img src="img/thunder.png" alt="icon" class="icon">
                 </span></div>
         </div>
         <div class="home-square home-square-green">
-            <div class="place-square"><span class="token token-green" data-squares-moved="0" data-color="green">
+            <div class="place-square"><span id="green1" class="token token-green" data-squares-moved="0" data-color="green">
                     <img src="img/leaf.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-green" data-squares-moved="0" data-color="green">
+            <div class="place-square"><span id="green2" class="token token-green" data-squares-moved="0" data-color="green">
                     <img src="img/leaf.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-green" data-squares-moved="0" data-color="green">
+            <div class="place-square"><span id="green3" class="token token-green" data-squares-moved="0" data-color="green">
                     <img src="img/leaf.png" alt="icon" class="icon">
                 </span></div>
-            <div class="place-square"><span class="token token-green" data-squares-moved="0" data-color="green">
+            <div class="place-square"><span id="green4" class="token token-green" data-squares-moved="0" data-color="green">
                     <img src="img/leaf.png" alt="icon" class="icon">
                 </span></div>
         </div>
@@ -505,9 +505,37 @@
         </div>
     </div>
 
-    <!-- single, double, triple, quadruple players -->
+    <!-- single, double, triple, quadruple players with toggles. -->
+    <div class="toggles">
+        <div class="toggle-container">
+            <label for="blue-toggle" class="switch">
+                <input type="checkbox" id="blue-toggle" value="blue" checked>
+                <span class="toggle-label blue-label">Blue Player</span>
+            </label>
+        </div>
+        <div class="toggle-container">
+            <label for="yellow-toggle" class="switch">
+                <input type="checkbox" id="yellow-toggle" value="yellow" checked>
+                <span class="toggle-label yellow-label">Yellow Player</span>
+            </label>
+        </div>
+        <div class="toggle-container">
+            <label for="green-toggle" class="switch">
+                <input type="checkbox" id="green-toggle" value="green" checked>
+                <span class="toggle-label green-label">Green Player</span>
+            </label>
+        </div>
+        <div class="toggle-container">
+            <label for="red-toggle" class="switch">
+                <input type="checkbox" id="red-toggle" value="red" checked>
+                <span class="toggle-label red-label">Red Player</span>
+            </label>
+        </div>
 
-    <script src="script.js"></script>
+
+
+        <script type="module" src="db.js"></script>
+        <script type="module" src="script.js"></script>
 </body>
 
 </html>

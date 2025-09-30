@@ -1,3 +1,6 @@
+
+import {diceNumberRef, currentPlayerRef, movingTokenRef, capturedTokenRef, coloringTokenRef, set} from "./db.js";
+
 const board = document.getElementById("board");
 const tokens = Array.from(document.querySelectorAll(".token"));
 const moveSquares = Array.from(document.querySelectorAll(".move-square"));
@@ -20,27 +23,49 @@ let extraTurn = false;
 let turnDone = false;
 
 let players = ["blue", "yellow", "green", "red"];
-let x = -1;
-let y = 4; // to track current player
-
-let tokenIsColored = false;
-let tokensColored = {
-     blue: 0,
-     yellow: 0,
-     red: 0,
-     green: 0
+const translations = {
+     blue: "-45% -45%",
+     red: "-45% 45%",
+     yellow: "45% -45%",
+     green: "45% 45%",
 };
+let x = -1;
+
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach(box => {
+     // box.style.accentColor = `var(--${box.value}-dark)`;
+     // box.style.backgroundColor = `var(--${box.value}-soft)`;
+     let span = document.querySelector(`.${box.value}-label`);
+     span.style.color = `var(--${box.value})`;
+
+     box.addEventListener("change", () => {
+          let span = document.querySelector(`.${box.value}-label`);
+
+          if (box.checked) {
+               span.style.color = `var(--${box.value})`;
+               const checkedBoxes = [...document.querySelectorAll('input[type="checkbox"]:checked')];
+               players = checkedBoxes.map(b => b.value);
+               // translations
+          } else {
+               span.style.color = `#ffffff60`;
+               players.splice(players.indexOf(box.value), 1);
+          }
+          tokens.forEach(token => {
+               token.style.display = players.includes(token.dataset.color) ? "flex" : "none";
+          });
+     });
+});
 
 dice.addEventListener("click", async () => {
      if (diceRollable) {
           // console.log(diceRollable);
-          activateTokens(getCurrTokens());
-          diceNumber === null && updatePlayer(++x) && console.log("dice"); //? ++ (post increment operator)
+          diceNumber === null && updatePlayers(++x); //? ++ (post increment operator)
           diceNumber = Math.floor(Math.random() * 6 + 1);
           dice.innerText = diceNumber;
           diceRollable = false;
           turnDone = false;
           extraTurn = false;
+          activateTokens(getCurrTokens());
           autoMove();
      }
 });
@@ -53,7 +78,7 @@ function someMovableToken() {
 }
 
 function handleDice() {
-     // !extraTurn && updatePlayer(++x) && console.log("handle");
+     // !extraTurn && updatePlayers(++x) && console.log("handle");
      diceRollable = true;
      dice.innerHTML = "#";
      diceNumber = "#";
@@ -78,7 +103,7 @@ function colorToken(token) {
      token.style.backgroundColor = `var(--${currentPlayer}-soft)`;
      // console.log("here");
      // token.innerHTML = "✪";
-     tokenIsColored[currentPlayer] += 1;
+     // tokenIsColored[currentPlayer] += 1;
      currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + " ↻";
      checkWinner();
 }
@@ -91,13 +116,15 @@ async function moveToken(token) {
 
      if (progress + diceNumber > 58) return; // cannot move
      extraTurn = diceNumber === 6;
+               deactivateTokens(getCurrTokens());
 
      for (let i = 1; i <= diceNumber; i++) {
           progress++; // step forward
 
           if (squaresMoved === 0 && diceNumber === 6 && i === 1) {
                // first entry to stop square
-               await animateMovement(startSquare, token);
+               // await animateMovement(startSquare, token);
+               startSquare.appendChild(token);
                token.style.transform = "scale(0.7)";
                token.classList.add("open");
                break;
@@ -123,23 +150,22 @@ async function moveToken(token) {
      if (diceNumber !== "#") token.dataset.squaresMoved = `${progress}`;
 
      if (!extraTurn) {
-          deactivateTokens(getCurrTokens());
-          updatePlayer(++x);
+          updatePlayers(++x);
      }
 
      handleDice();
 }
 
 
-function updatePlayer(x) {
+function updatePlayers(x) {
      // return; 
-     currentPlayer = ["blue", "yellow", "green", "red"][x % 4];
+     currentPlayer = players[x % players.length];
      currentPlayerElement.innerHTML = currentPlayer.toUpperCase() + "<span id='turn'>'s Turn</span>";
      currentPlayerElement.style.color = `var(--${currentPlayer})`;
      prepareTokens(tokens.filter(token => token.classList.contains(`token-${currentPlayer}`)));
      // console.log("switched");
-     dice.style.translate = ["-45% -45%", "45% -45%", "45% 45%", "-45% 45%"][x % 4];
-     dice.style.color = `var(--${currentPlayer}-dark)`;
+     dice.style.translate = translations[currentPlayer];
+     // dice.style.color = `var(--${currentPlayer}-dark)`;
      return true;
 }
 
@@ -211,7 +237,7 @@ function autoMove() {
           if (diceNumber !== 6) {
                setTimeout(() => {
                     turnDone = true;
-                    updatePlayer(++x) && console.log("auto");
+                    updatePlayers(++x);
                     handleDice();
                }, 600);
           }
@@ -231,11 +257,13 @@ function autoMove() {
                // if the remaining token is already open -> move it
                if (openTokens.length === 1) {
                     openTokens[0].click();
+                    console.log(0);
                     return;
                }
                // if the remaining token is closed and we rolled a 6 -> spawn it
                if (closedTokens.length === 1 && diceNumber === 6) {
                     closedTokens[0].click();
+                    console.log(0);
                     return;
                }
                // otherwise no auto-move
@@ -245,23 +273,31 @@ function autoMove() {
           // ---- Case 1: All tokens closed, dice = 6 -> spawn one ----
           if (closedTokens.length === allTokens.length && diceNumber === 6) {
                closedTokens[0].click();
+               console.log(0);
                return;
           }
 
           // ---- Case 2: Only one open token -> move it ----
-          if (openTokens.length === 1) {
+          if (openTokens.length === 1 && diceNumber !== 6) {
                openTokens[0].click();
+               console.log(0);
                return;
           }
 
           // ---- Case 3: Only one token can move among opens -> move it ----
-          if (movable.length === 1) {
+          if (movable.length === 1 && diceNumber !== 6) {
                movable[0].click();
+               console.log(0);
+               return;
+          }
+          if (movable.length === 1 && diceNumber === 6 && closedTokens.length === 0) {
+               movable[0].click();
+               console.log(0);
                return;
           }
           if (movable.length === 0 && closedTokens.length === 0) {
                turnDone = true;
-               updatePlayer(++x) && console.log("auto");
+               updatePlayers(++x) && console.log("auto");
                handleDice();
 
                // no token can move, do nothing
@@ -272,10 +308,11 @@ function autoMove() {
           // This covers stacks on stops that are NOT necessarily your own stop.
           if (
                openTokens.length > 0 &&
-               openTokens.every(t => t.parentElement.classList.contains("stop")) &&
+               openTokens.every(t => t.parentElement.classList.contains("stop") && t.parentElement.dataset.sqNum !== document.querySelector(`.token-${currentPlayer}`).parentElement.dataset.sqNum) &&
                diceNumber !== 6
           ) {
                openTokens[0].click();
+               console.log(0);
                return;
           }
 
@@ -283,6 +320,7 @@ function autoMove() {
           const homeMovers = openTokens.filter(t => (+t.dataset.squaresMoved + diceNumber) === 58);
           if (homeMovers.length === 1) {
                homeMovers[0].click();
+               console.log(0);
                return;
           }
 
@@ -305,16 +343,18 @@ function checkWinner() {
      }
      extraTurn = false;
      players.splice(players.indexOf(currentPlayer), 1);
-     y--;
-     if (y === 1) {
-          setTimeout(() => {
-               location.reload();
-          }, 2000);
-     }
+     // y--;
+     // if (y === 1) {
+     //      setTimeout(() => {
+     //           location.reload();
+     //      }, 2000);
+     // }
 }
 
 function activateTokens(currTokens) {
-     diceNumber === 6 ? currTokens.forEach(token => !token.classList.contains("colored") && token.classList.add("active")) : getMovableTokens(currTokens).forEach(token => token.classList.contains("open") && token.classList.add("active"));
+     if (diceNumber === 6) {
+          currTokens.forEach(token => !token.classList.contains("colored") && token.classList.add("active"));
+     } else getMovableTokens(currTokens).forEach(token => token.classList.contains("open") && !token.classList.contains("colored") && token.classList.add("active"));
 }
 function deactivateTokens(currentTokens) {
      currentTokens.forEach(token => token.classList.remove("active"));
@@ -325,3 +365,5 @@ function getCurrTokens() {
 }
 
 
+
+export { dice,diceNumber, currentPlayer, updatePlayers, currentPlayerElement, moveToken, captureToken, colorToken };

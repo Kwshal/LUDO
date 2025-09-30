@@ -9,13 +9,14 @@ short term:
 <!-- - win logic, DONE -->
 --- ghost logic,??? edit: ok so ghost token is the killed token which cant capture or be captured.
 <!-- - conic gradient in finish square. DONE -->
-- active token will have a dashed ring. NOT WORKING !!
+<!-- - active token will have a dashed ring. !NOT WORKING !! -->
 <!-- - animate: -->
  <!-- - moves, DONE, edit:improved -->
  <!-- - capture !!!!!! -->
-= animate dice ie slightly to the current player !!!!
+<!-- = animate dice ie slightly to the current player. DONE -->
  <!-- -- remove the current player status and denote it by other means !!! -->
- -- animate the dice roll !!!
+ -- animate the dice roll.edit: atleast the num>?
+
 
 
 NEW

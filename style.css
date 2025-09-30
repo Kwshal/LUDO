@@ -1,26 +1,26 @@
 :root {
     /*? base color */
-    --blue: hsl(200, 90%, 70%);
-    --yellow: hsl(64, 90%, 70%);
-    --green: hsl(128, 90%, 70%);
-    --red: hsl(0, 90%, 70%);
+    --blue: hsl(200, 100%, 60%);
+    --yellow: hsl(64, 100%, 60%);
+    --green: hsl(128, 100%, 60%);
+    --red: hsl(0, 100%, 60%);
 
     /*? soft color */
-    --blue-soft: hsl(200, 90%, 80%);
-    --yellow-soft: hsl(64, 90%, 80%);
-    --green-soft: hsl(128, 90%, 80%);
-    --red-soft: hsl(0, 90%, 80%);
+    --blue-soft: hsl(200, 100%, 70%);
+    --yellow-soft: hsl(64, 100%, 70%);
+    --green-soft: hsl(128, 100%, 70%);
+    --red-soft: hsl(0, 100%, 70%);
     /*? softest color */
-    --blue-softer: hsl(200, 90%, 90%);
-    --yellow-softer: hsl(64, 90%, 90%);
-    --green-softer: hsl(128, 90%, 90%);
-    --red-softer: hsl(0, 90%, 90%);
+    --blue-softer: hsl(200, 100%, 90%);
+    --yellow-softer: hsl(64, 100%, 90%);
+    --green-softer: hsl(128, 100%, 90%);
+    --red-softer: hsl(0, 100%, 90%);
 
     /*? dark color */
-    --blue-dark: hsl(200, 100%, 40%);
-    --yellow-dark: hsl(64, 100%, 40%);
-    --green-dark: hsl(128, 100%, 40%);
-    --red-dark: hsl(0, 100%, 40%);
+    --blue-dark: hsl(200, 100%, 50%);
+    --yellow-dark: hsl(64, 100%, 50%);
+    --green-dark: hsl(128, 100%, 50%);
+    --red-dark: hsl(0, 100%, 50%);
 }
 
 * {
@@ -29,6 +29,10 @@
     user-select: none;
     box-sizing: border-box;
     pointer-events: none;
+}
+button, label {
+    cursor: pointer;
+    pointer-events: all;
 }
 
 /* body {
@@ -60,7 +64,7 @@
     /* gap: 2px; */
     /* background: conic-gradient(from -45deg, var(--token-blue-softest), var(--token-yellow-softest), var(--token-green-softest), var(--token-red-softest), var(--token-blue-softest)); */
         background: conic-gradient(from -108deg, var(--blue-soft) 0deg 90deg, var(--yellow-soft) 90deg 180deg, var(--green-soft) 180deg 270deg, var(--red-soft) 270deg 360deg, var(--blue-soft));
-
+    margin: 5px auto;
 }
 
 /* .home-square,
@@ -237,7 +241,7 @@
     /* width: 80%; */
     aspect-ratio: 1;
     cursor: pointer;
-    transition: transform 0.25s;
+    transition: transform 0.25s ease-in-out;
     z-index: 2;
     background: white;
     position: absolute;
@@ -253,19 +257,30 @@
     pointer-events: all;
     border-bottom: 1px solid #00000020;
 }
-.active {
-    border: 2px dashed #000;
-    animation: rotate 2s linear infinite;
+.active.open {
+    animation: rotate 2s ease-in-out infinite;
 }
 
 @keyframes rotate {
-    0% {
-        transform: rotate(0deg);
+    0%, 100% {
+        transform: translateY(0px) scale(.7);
     }
 
-    100% {
-        transform: rotate(360deg);
+    50% {
+        transform: translateY(-2px) scale(.7);
     }
+}
+.active:nth-child(1) {
+    animation-delay: 0s;
+}
+.active:nth-child(2) {
+    animation-delay: 0.5s;
+}
+.active:nth-child(3) {
+    animation-delay: 0.25s;
+}
+.active:nth-child(4) {
+    animation-delay: 0.75s;
 }
 
 .icon {
@@ -340,10 +355,11 @@
     border-bottom: 2px solid #00000020;
     box-shadow: 0 1px 2px gray;
     /* box-shadow: 0 2px 3px ; */
-    color: black;
+    /* color: var(--blue-dark); */
     pointer-events: all;
     position: absolute;
-    transition: all 0.3s;
+    transition: all 0.6s;
+    /* translate: -45% -45%; */
 }
 
 #dice:active {
@@ -363,7 +379,7 @@
     padding: 15px 10px;
     /* border-radius: 50px; */
     /* box-shadow: 0 1px 2px; */
-    border-bottom: 2px solid #ffffff60;
+    /* border-bottom: 2px solid #ffffff60; */
 }
 #turn {
     color: #ccc;
@@ -395,7 +411,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10%;
+    padding: 5%;
 }
 
 .final-arrow svg,
@@ -403,9 +419,9 @@
     aspect-ratio: 1;
 }
 
-.final-arrow svg path {
-    fill: white;
-}
+/* .final-arrow svg path {
+    fill: whitesmoke;
+} */
 
 
 .indicator {
@@ -416,3 +432,27 @@
     border: 8px solid #ffffff;
 }
 
+.toggles {
+    height: 100px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: left;
+    padding: 10px;
+    /* margin: 10px; */
+    gap: 15px;
+    background-color: black;
+}
+.toggles label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2em;
+    color: black;
+    pointer-events: all;
+    user-select: none;
+}
+
+.toggles input {
+    display: none;
+}
